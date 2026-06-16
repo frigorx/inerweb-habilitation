@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#06121f">
+<title>Console enseignant — Réglementation | inerWeb Édu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#06121f;--blue:#0E3A5E;--blue2:#114E78;--frost:#35D0C5;--frost2:#7BE0D8;--accent:#FF6B35;--accent2:#FF8E53;
+    --vert:#27ae60;--rouge:#c0392b;--panel:#0f2435;--panel2:#13314a;--txt:#e7f1f8;--muted:#9fb6c9;--border:#244157;
+    --head:'Poppins','Inter',system-ui,sans-serif;--body:'Inter','Calibri',system-ui,sans-serif;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--body);color:var(--txt);background:radial-gradient(1200px 600px at 70% -10%,#143049,#06121f);min-height:100vh;line-height:1.6;font-size:17px}
+  header.top{position:sticky;top:0;z-index:50;background:rgba(6,18,31,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:.7rem 1rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+  header .logo{font-family:var(--head);font-weight:700}
+  header .tag{background:var(--accent);color:#fff;font-size:.75rem;font-weight:800;padding:.2rem .6rem;border-radius:20px}
+  header a.home{margin-left:auto;color:#bcd4e6;text-decoration:none;border:1px solid var(--border);padding:.35rem .7rem;border-radius:10px;font-size:.85rem}
+  nav.tabs{display:flex;gap:.4rem;overflow-x:auto;padding:.7rem}
+  nav.tabs button{flex:0 0 auto;background:var(--panel);border:1px solid var(--border);color:#cfe3f1;font-weight:700;font-size:.92rem;padding:.55rem 1rem;border-radius:10px;cursor:pointer;white-space:nowrap;font-family:var(--head)}
+  nav.tabs button.active{background:var(--frost);color:#06303a;border-color:var(--frost)}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 1rem 3rem}
+  .panel{display:none}.panel.active{display:block}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:1rem 1.2rem;margin:.8rem 0}
+  h1{font-family:var(--head);font-weight:800;font-size:1.5rem;margin:.2rem 0 .4rem}
+  h2{font-family:var(--head);font-weight:700;color:var(--frost2);font-size:1.15rem;margin:.2rem 0 .5rem}
+  h3{font-family:var(--head);font-weight:600;color:#cfe3f1;font-size:1rem;margin:.7rem 0 .2rem}
+  ul{margin:.3rem 0 .3rem 1.2rem}li{margin:.3rem 0}
+  .muted{color:var(--muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .box{border-radius:10px;padding:.7rem .9rem}
+  .eleve{background:#0c2942;border-left:4px solid var(--frost)}
+  .prof{background:#3a2410;border-left:4px solid var(--accent)}
+  table{border-collapse:collapse;width:100%;margin:.5rem 0;font-size:.92rem}
+  th,td{border:1px solid var(--border);padding:.45rem .6rem;text-align:left}thead th{background:#0b2236;color:var(--frost2)}
+  .btn{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:.6rem 1.1rem;font-weight:700;font-family:var(--head);cursor:pointer}
+  .btn:hover{background:var(--accent2)}.btn.ghost{background:transparent;color:#cfe3f1;border:1px solid var(--border)}
+  .qrow{display:flex;align-items:center;gap:.6rem;padding:.6rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
+  .qrow .qt{flex:1;min-width:200px}
+  .situ{font-size:.7rem;font-weight:800;color:#06303a;background:var(--frost);padding:.05rem .45rem;border-radius:20px}
+  /* projection overlay */
+  #proj{position:fixed;inset:0;background:linear-gradient(125deg,#06121f,#0E3A5E 60%,#1C7C94);color:#fff;display:none;flex-direction:column;justify-content:center;align-items:center;padding:4vh 6vw;z-index:100;text-align:center}
+  #proj.show{display:flex}
+  #proj .pq{font-family:var(--head);font-weight:800;font-size:clamp(1.6rem,4vw,3rem);max-width:1100px;margin-bottom:1.4rem}
+  #proj .pc{font-size:clamp(1.1rem,2.4vw,1.7rem);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:.7rem 1.3rem;margin:.4rem;display:block;max-width:1000px}
+  #proj .pc.good{background:rgba(39,174,96,.35);border-color:#27ae60}
+  #proj .pe{font-size:1.15rem;color:#dbeaf3;max-width:1000px;margin-top:1rem;display:none}
+  #proj .pe.show{display:block}
+  #proj .ctrl{position:fixed;bottom:18px;display:flex;gap:.6rem}
+</style>
+</head>
+<body>
+  <header class="top">
+    <span class="logo">🎛️ inerWeb Édu</span><span class="tag">Console enseignant</span>
+    <span id="modtitre" style="font-size:.9rem;color:#bcd4e6"></span>
+    <a class="home" href="index.html">🏠 Portail</a>
+  </header>
+  <nav class="tabs" id="nav">
+    <button class="active" data-p="cours">📖 Dérouler le cours</button>
+    <button data-p="questions">🎯 Questions en classe</button>
+    <button data-p="aide">ℹ️ Mode d'emploi</button>
+  </nav>
+  <div class="wrap">
+    <section class="panel active" id="cours"><div id="coursBox"></div></section>
+    <section class="panel" id="questions">
+      <div class="card">
+        <h1>🎯 Questions en classe — remédiation au fil de l'eau</h1>
+        <p class="muted">Clique <b>« Projeter »</b> : la question s'affiche en plein écran (vidéoprojecteur). Les stagiaires répondent (tablette / à l'oral), puis <b>« Révéler »</b> pour corriger et remédier. Ce sont les questions qu'ils ont révisées.</p>
+        <div id="qlist"></div>
+      </div>
+    </section>
+    <section class="panel" id="aide">
+      <div class="card">
+        <h1>ℹ️ Mode d'emploi (console)</h1>
+        <ul>
+          <li><b>Dérouler le cours</b> : pour chaque point, la version <span style="color:var(--frost2)">stagiaire</span> (ce qu'ils voient) et tes <span style="color:var(--accent2)">notes formateur</span> (ce que tu approfondis, anecdotes, « faire deviner »).</li>
+          <li><b>Questions en classe</b> : projeter / révéler, remédiation immédiate.</li>
+          <li><b>Une seule source</b> : ce contenu vient de <code>reglementation-data.js</code> — il alimente aussi l'appli stagiaire et le document papier. Modifier la source = tout est à jour.</li>
+          <li><b>À venir</b> : connexion temps réel (tablettes des stagiaires) et collecte des réponses, dans l'esprit de fgas‑eval‑mfer (RGPD : pseudonymisation, données locales).</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div id="proj">
+    <div id="pq" class="pq"></div>
+    <div id="pc"></div>
+    <div id="pe" class="pe"></div>
+    <div class="ctrl">
+      <button class="btn" id="revealBtn" onclick="reveal()">Révéler la réponse</button>
+      <button class="btn ghost" onclick="closeProj()">Fermer</button>
+    </div>
+  </div>
+
+<script src="reglementation-data.js"></script>
+<script>
+  const M=window.MODULE;
+  document.getElementById('modtitre').textContent="· "+M.titre;
+  function tbl(rows,head){return "<table><thead><tr>"+head.map(h=>"<th>"+h+"</th>").join("")+"</tr></thead><tbody>"+rows.map(r=>"<tr>"+r.map(c=>"<td>"+c+"</td>").join("")+"</tr>").join("")+"</tbody></table>";}
+  // Dérouler le cours : élève + prof côte à côte
+  let cb="<div class='card'><h1>"+M.titre+"</h1><p class='muted'>"+M.sousTitre+" — "+M.niveau+"</p></div>";
+  M.sections.forEach(s=>{
+    cb+="<div class='card'><h2>"+s.titre+"</h2><div class='grid2'>";
+    cb+="<div class='box eleve'><h3>👁️ Vu par le stagiaire</h3><ul>"+s.eleve.map(p=>"<li>"+p+"</li>").join("")+"</ul>";
+    if(s.gwp)cb+=tbl(s.gwp,["Fluide","GWP"]);
+    if(s.categories)cb+=tbl(s.categories,["Cat.","Périmètre","Ancien"]);
+    cb+="</div>";
+    cb+="<div class='box prof'><h3>🎓 Notes formateur</h3><ul>"+s.prof.map(p=>"<li>"+p+"</li>").join("")+"</ul></div>";
+    cb+="</div></div>";});
+  document.getElementById('coursBox').innerHTML=cb;
+  // Questions
+  let ql="";M.qcm.forEach((q,n)=>{ql+="<div class='qrow'><span class='qt'>"+(q.situ?"<span class='situ'>SITU</span> ":"")+q.q+"</span><button class='btn' onclick='project("+n+")'>Projeter</button></div>";});
+  document.getElementById('qlist').innerHTML=ql;
+  // Projection
+  let cur=null;
+  function project(n){cur=n;const q=M.qcm[n];
+    document.getElementById('pq').innerHTML=(q.situ?"🔧 ":"")+q.q;
+    document.getElementById('pc').innerHTML=q.c.map((c,i)=>"<span class='pc' data-i='"+i+"'>"+String.fromCharCode(65+i)+". "+c+"</span>").join("");
+    const pe=document.getElementById('pe');pe.className='pe';pe.innerHTML="";
+    document.getElementById('revealBtn').style.display='';
+    document.getElementById('proj').classList.add('show');}
+  function reveal(){const q=M.qcm[cur];
+    document.querySelectorAll('#pc .pc').forEach(el=>{if(+el.dataset.i===q.a)el.classList.add('good');});
+    const pe=document.getElementById('pe');pe.innerHTML="<b>Remédiation :</b> "+q.e;pe.classList.add('show');
+    document.getElementById('revealBtn').style.display='none';}
+  function closeProj(){document.getElementById('proj').classList.remove('show');}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProj();});
+  const nav=document.getElementById('nav');
+  nav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    nav.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(b.dataset.p).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});});
+  window.project=project;window.reveal=reveal;window.closeProj=closeProj;
+</script>
+</body>
+</html>

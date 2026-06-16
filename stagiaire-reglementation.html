@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A1F33">
+<title>Stagiaire — Réglementation | inerWeb Édu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0A1F33;--blue:#0E3A5E;--blue2:#114E78;--frost:#35D0C5;--accent:#FF6B35;--accent2:#FF8E53;
+    --vert:#27ae60;--vert2:#e8f8ef;--rouge:#c0392b;--rouge2:#fdecea;--bg:#F4F8FB;--card:#fff;--txt:#13283C;--muted:#5B7185;--border:#e3edf4;
+    --head:'Poppins','Inter',system-ui,sans-serif;--body:'Inter','Calibri',system-ui,sans-serif;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--body);color:var(--txt);background:var(--bg);line-height:1.6;font-size:18px}
+  header.top{position:sticky;top:0;z-index:50;background:linear-gradient(120deg,#0A1F33,#0E3A5E 55%,#1C7C94);color:#fff;padding:.7rem 1rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;box-shadow:0 4px 16px rgba(13,58,94,.12)}
+  header .logo{font-family:var(--head);font-weight:700;font-size:1.1rem}
+  header .tag{background:var(--frost);color:#06303a;font-size:.78rem;font-weight:800;padding:.2rem .6rem;border-radius:20px}
+  header a.home{margin-left:auto;color:#cfe0f0;text-decoration:none;border:1px solid #2c4a6e;padding:.35rem .7rem;border-radius:10px;font-size:.85rem}
+  nav.tabs{display:flex;gap:.4rem;overflow-x:auto;padding:.7rem;position:sticky;top:52px;background:var(--bg);z-index:40}
+  nav.tabs button{flex:0 0 auto;background:#fff;border:2px solid var(--border);color:var(--blue);font-weight:700;font-size:.95rem;padding:.6rem 1rem;border-radius:12px;cursor:pointer;white-space:nowrap;font-family:var(--head);min-height:46px}
+  nav.tabs button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 1rem 3rem}
+  .panel{display:none}.panel.active{display:block}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 4px 16px rgba(13,58,94,.05);padding:1.1rem 1.3rem;margin:.9rem 0}
+  h1{font-family:var(--head);font-weight:800;color:var(--ink);font-size:1.6rem;margin:.2rem 0 .3rem}
+  h2{font-family:var(--head);font-weight:700;color:var(--blue);font-size:1.2rem;margin:.2rem 0 .5rem}
+  ul{margin:.4rem 0 .4rem 1.2rem}li{margin:.35rem 0}
+  .lead{color:var(--muted)}
+  table{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.95rem}
+  th,td{border:1px solid var(--border);padding:.5rem .6rem;text-align:left}
+  thead th{background:var(--blue);color:#fff}
+  .choices button{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--border);border-radius:12px;padding:.85rem 1rem;margin:.45rem 0;font-size:1.02rem;cursor:pointer;min-height:50px}
+  .choices button:hover{border-color:var(--accent)}
+  .choices button.ok{background:var(--vert2);border-color:var(--vert);font-weight:700}
+  .choices button.ko{background:var(--rouge2);border-color:var(--rouge)}
+  .explain{display:none;background:#eaf3fb;border-left:5px solid var(--blue2);border-radius:10px;padding:.7rem 1rem;margin:.6rem 0}
+  .explain.show{display:block}
+  .situ{display:inline-block;font-size:.72rem;font-weight:800;color:#06303a;background:var(--frost);padding:.1rem .5rem;border-radius:20px;margin-bottom:.3rem}
+  .btn{background:var(--accent);color:#fff;border:none;border-radius:12px;padding:.7rem 1.2rem;font-weight:700;font-family:var(--head);cursor:pointer;min-height:48px}
+  .btn:hover{background:var(--accent2)}.btn.ghost{background:#fff;color:var(--blue);border:2px solid var(--border)}
+  .meta{display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--blue);flex-wrap:wrap;gap:.5rem}
+  .progress{height:8px;background:var(--border);border-radius:10px;overflow:hidden;margin:.5rem 0}.progress>div{height:100%;background:var(--accent);width:0;transition:.3s}
+  .result{font-family:var(--head);font-size:2.6rem;font-weight:800;text-align:center}
+  .pass{color:var(--vert)}.fail{color:var(--rouge)}
+</style>
+</head>
+<body>
+  <header class="top">
+    <span class="logo">❄️ inerWeb Édu</span><span class="tag">Stagiaire</span>
+    <span id="modtitre" style="font-size:.9rem;color:#cfe0f0"></span>
+    <a class="home" href="index.html">🏠 Portail</a>
+  </header>
+  <nav class="tabs" id="nav">
+    <button class="active" data-p="reviser">⚡ Réviser</button>
+    <button data-p="cours">📚 Cours</button>
+    <button data-p="quiz">📝 M'entraîner</button>
+  </nav>
+  <div class="wrap">
+    <section class="panel active" id="reviser">
+      <div class="card"><h1 id="rtitre"></h1><p class="lead" id="rsub"></p>
+        <p>Révise vite l'essentiel, puis teste‑toi dans « M'entraîner ». Tu as aussi le <b>document papier</b> pour écrire et garder une trace.</p>
+        <div id="apercu"></div>
+      </div>
+    </section>
+    <section class="panel" id="cours"><div id="coursBox"></div></section>
+    <section class="panel" id="quiz">
+      <div class="card" id="quizIntro">
+        <h1>📝 M'entraîner</h1>
+        <p class="lead">Questions avec correction immédiate — dont des mises en situation du terrain.</p>
+        <button class="btn" onclick="startQuiz()">🚀 Commencer</button>
+      </div>
+      <div class="card" id="quizBox" style="display:none">
+        <div class="meta"><span id="qprog"></span><span id="qscore"></span></div>
+        <div class="progress"><div id="qbar"></div></div>
+        <p id="qsitu"></p>
+        <h2 id="qtext" style="margin:.3rem 0 .8rem"></h2>
+        <div class="choices" id="qchoices"></div>
+        <div class="explain" id="qexp"></div>
+        <div style="text-align:right;margin-top:.6rem"><button class="btn" id="qnext" onclick="nextQ()" disabled>Suivante →</button></div>
+      </div>
+      <div class="card" id="quizEnd" style="display:none">
+        <h1>Résultat</h1><div class="result" id="qpct"></div><p id="qmsg" style="text-align:center"></p>
+        <div style="text-align:center;margin-top:.6rem"><button class="btn ghost" onclick="startQuiz()">Recommencer</button></div>
+      </div>
+    </section>
+  </div>
+<script src="reglementation-data.js"></script>
+<script>
+  const M=window.MODULE;
+  document.getElementById('modtitre').textContent="· "+M.titre;
+  document.getElementById('rtitre').textContent=M.titre;
+  document.getElementById('rsub').textContent=M.sousTitre+" — "+M.niveau;
+  // Aperçu révision = points élève condensés
+  let ap="";M.sections.forEach(s=>{ap+="<h2>"+s.titre+"</h2><ul>"+s.eleve.map(p=>"<li>"+p+"</li>").join("")+"</ul>";});
+  document.getElementById('apercu').innerHTML=ap;
+  // Cours = sections détaillées + tableaux
+  function tbl(rows,head){return "<table><thead><tr>"+head.map(h=>"<th>"+h+"</th>").join("")+"</tr></thead><tbody>"+rows.map(r=>"<tr>"+r.map(c=>"<td>"+c+"</td>").join("")+"</tr>").join("")+"</tbody></table>";}
+  let cb="";M.sections.forEach(s=>{
+    cb+="<div class='card'><h2>"+s.titre+"</h2><ul>"+s.eleve.map(p=>"<li>"+p+"</li>").join("")+"</ul>";
+    if(s.gwp)cb+="<h3>GWP de quelques fluides</h3>"+tbl(s.gwp,["Fluide","GWP"]);
+    if(s.categories)cb+="<h3>Les 7 catégories</h3>"+tbl(s.categories,["Cat.","Périmètre","Ancien"]);
+    cb+="</div>";});
+  document.getElementById('coursBox').innerHTML=cb;
+  // Nav
+  const nav=document.getElementById('nav');
+  nav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    nav.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(b.dataset.p).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});});
+  // QCM
+  let qs=[],i=0,ok=0;
+  function shuffle(a){a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]];}return a;}
+  function startQuiz(){qs=shuffle(M.qcm);i=0;ok=0;
+    document.getElementById('quizIntro').style.display='none';document.getElementById('quizEnd').style.display='none';
+    document.getElementById('quizBox').style.display='block';render();}
+  function render(){const q=qs[i];
+    document.getElementById('qprog').textContent=(i+1)+" / "+qs.length;
+    document.getElementById('qscore').textContent="✅ "+ok;
+    document.getElementById('qbar').style.width=(i/qs.length*100)+"%";
+    document.getElementById('qsitu').innerHTML=q.situ?"<span class='situ'>🔧 Mise en situation</span>":"";
+    document.getElementById('qtext').textContent=q.q;
+    const ch=document.getElementById('qchoices');ch.innerHTML="";
+    q.c.forEach((c,idx)=>{const b=document.createElement('button');b.innerHTML=c;b.onclick=()=>answer(idx,b);ch.appendChild(b);});
+    document.getElementById('qexp').className='explain';document.getElementById('qnext').disabled=true;}
+  function answer(idx,btn){const q=qs[i];document.querySelectorAll('#qchoices button').forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('ok');});
+    if(idx===q.a)ok++;else btn.classList.add('ko');
+    const ex=document.getElementById('qexp');ex.innerHTML="<b>"+(idx===q.a?"✅ Correct":"❌ Incorrect")+" —</b> "+q.e;ex.classList.add('show');
+    document.getElementById('qscore').textContent="✅ "+ok;document.getElementById('qnext').disabled=false;}
+  function nextQ(){i++;if(i>=qs.length)end();else render();}
+  function end(){document.getElementById('quizBox').style.display='none';
+    const pct=Math.round(ok/qs.length*100);const r=document.getElementById('qpct');r.textContent=pct+"%";r.className="result "+(pct>=70?"pass":"fail");
+    document.getElementById('qmsg').textContent=ok+" / "+qs.length+" — "+(pct>=70?"Bien, niveau attendu atteint !":"Continue à réviser, tu y es presque.");
+    document.getElementById('quizEnd').style.display='block';}
+  window.startQuiz=startQuiz;window.nextQ=nextQ;
+</script>
+</body>
+</html>
