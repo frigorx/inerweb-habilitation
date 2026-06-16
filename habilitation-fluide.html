@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f2d52">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Habilitation Fluide">
+<title>Habilitation Fluide | inerWeb Édu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E3A5E;--navy2:#114E78;--turq:#35D0C5;
+    --orange:#FF6B35;--orange2:#FF8E53;
+    --vert:#27ae60;--vert2:#e8f8ef;
+    --rouge:#c0392b;--rouge2:#fde8e8;
+    --jaune:#f0a106;--jaune2:#fff6e5;
+    --bg:#F4F8FB;--card:#fff;--border:#e3edf4;
+    --txt:#13283C;--txt2:#5B7185;--txt3:#8a9aa8;
+    --radius:16px;--shadow:0 4px 16px rgba(13,58,94,.07);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  h1,h2,h3,header.top .logo{font-family:'Poppins','Inter',system-ui,sans-serif}
+  body{font-family:'Inter','Calibri','Segoe UI',system-ui,sans-serif;font-size:17px;
+    background:linear-gradient(180deg,var(--bg),#e7f0f7);color:var(--txt);min-height:100vh;line-height:1.55}
+  .app{max-width:1000px;margin:0 auto;padding:.6rem}
+  header.top{position:sticky;top:0;z-index:50;background:linear-gradient(120deg,#0A1F33,#0E3A5E 55%,#1C7C94);color:#fff;
+    border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);padding:.7rem 1rem;
+    display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+  header.top .logo{font-weight:700;font-size:1.2rem;display:flex;align-items:center;gap:.4rem}
+  header.top .tag{background:var(--orange);color:#fff;font-size:.8rem;font-weight:700;padding:.2rem .6rem;border-radius:20px}
+  header.top #modeLabel{font-size:.85rem;color:#cfe0f0}
+  header.top .home{margin-left:auto;font-size:.85rem;color:#cfe0f0;text-decoration:none;border:1px solid #2c4a6e;padding:.35rem .7rem;border-radius:10px}
+  nav.tabs{display:flex;gap:.4rem;overflow-x:auto;padding:.7rem .2rem;scrollbar-width:thin}
+  nav.tabs button{flex:0 0 auto;background:var(--card);border:2px solid var(--border);color:var(--navy);
+    font-weight:700;font-size:.95rem;padding:.6rem 1rem;border-radius:12px;cursor:pointer;min-height:46px;white-space:nowrap;transition:.15s}
+  nav.tabs button:hover{border-color:var(--orange)}
+  nav.tabs button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  nav.tabs button.back{background:var(--orange);color:#fff;border-color:var(--orange)}
+  .panel{display:none;animation:fade .25s}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.1rem 1.2rem;margin:.8rem 0}
+  h1{font-size:1.5rem;color:var(--navy);margin:.2rem 0 .6rem}
+  h2{font-size:1.25rem;color:var(--navy);margin:.3rem 0 .5rem;display:flex;align-items:center;gap:.5rem}
+  h3{font-size:1.05rem;color:var(--navy2);margin:.9rem 0 .3rem}
+  p{margin:.5rem 0}ul{margin:.4rem 0 .4rem 1.2rem}li{margin:.25rem 0}
+  .lead{font-size:1.05rem;color:var(--txt2)}
+  .disclaimer{background:var(--jaune2);border-left:5px solid var(--jaune);border-radius:10px;padding:.8rem 1rem;margin:.6rem 0;font-size:.97rem}
+  .ok-box{background:var(--vert2);border-left:5px solid var(--vert);border-radius:10px;padding:.8rem 1rem;margin:.6rem 0}
+  .info-box{background:#eaf3fb;border-left:5px solid var(--navy2);border-radius:10px;padding:.8rem 1rem;margin:.6rem 0}
+  .obj{background:#fff6ee;border-left:5px solid var(--orange);border-radius:10px;padding:.7rem 1rem;margin:.5rem 0;font-size:.96rem}
+  table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.96rem}
+  th,td{border:1px solid var(--border);padding:.55rem .6rem;text-align:left;vertical-align:top}
+  thead th{background:var(--navy);color:#fff}tbody tr:nth-child(even){background:#f5f8fc}
+  .badge{display:inline-block;font-weight:700;font-size:.8rem;padding:.15rem .5rem;border-radius:6px;color:#fff}
+  .b-a1{background:#27ae60}.b-a2l{background:#e8914a}.b-a3{background:#c0392b}.b-b2l{background:#7b1fa2}
+  /* Espaces (home) */
+  .spaces{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:.8rem 0}
+  .space{background:var(--card);border:2px solid var(--border);border-radius:var(--radius);padding:1.4rem;cursor:pointer;transition:.15s;text-align:center}
+  .space:hover{border-color:var(--orange);transform:translateY(-3px);box-shadow:var(--shadow)}
+  .space .ic{font-size:2.6rem}
+  .space .nm{font-weight:800;color:var(--navy);font-size:1.2rem;margin:.4rem 0}
+  .space .ds{color:var(--txt2);font-size:.95rem}
+  .space .who{display:inline-block;margin-top:.6rem;font-size:.8rem;font-weight:700;color:#fff;background:var(--turq);padding:.15rem .7rem;border-radius:20px}
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.7rem;margin:.6rem 0}
+  .cat{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:.9rem;text-align:center}
+  .cat .num{font-size:1.8rem;font-weight:800;color:var(--orange)}
+  .cat .t{font-weight:700;color:var(--navy);margin:.2rem 0}.cat .d{font-size:.88rem;color:var(--txt2)}
+  .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+  .theme-btn{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:1rem;text-align:left;cursor:pointer;min-height:80px;transition:.15s}
+  .theme-btn:hover{border-color:var(--orange);transform:translateY(-2px)}
+  .theme-btn .ti{font-size:1.5rem}.theme-btn .tt{font-weight:700;color:var(--navy);margin:.2rem 0}.theme-btn .ts{font-size:.85rem;color:var(--txt2)}
+  .q-wrap{max-width:760px;margin:0 auto}
+  .q-meta{display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--navy);margin-bottom:.5rem;flex-wrap:wrap;gap:.5rem}
+  .q-text{font-size:1.15rem;font-weight:700;color:var(--navy);margin:.6rem 0 1rem}
+  .q-theme{font-size:.8rem;color:#fff;background:var(--turq);padding:.15rem .6rem;border-radius:20px;font-weight:700}
+  .choices button{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--border);border-radius:12px;padding:.9rem 1rem;margin:.5rem 0;font-size:1.02rem;cursor:pointer;min-height:50px;transition:.12s}
+  .choices button:hover{border-color:var(--orange)}
+  .choices button.correct{background:var(--vert2);border-color:var(--vert);font-weight:700}
+  .choices button.wrong{background:var(--rouge2);border-color:var(--rouge)}
+  .choices button:disabled{cursor:default}
+  .explain{background:#eaf3fb;border-left:5px solid var(--navy2);border-radius:10px;padding:.8rem 1rem;margin:.6rem 0;display:none}
+  .explain.show{display:block}
+  .btn{background:var(--orange);color:#fff;border:none;border-radius:12px;padding:.8rem 1.4rem;font-size:1.05rem;font-weight:700;cursor:pointer;min-height:50px;transition:.15s}
+  .btn:hover{background:var(--orange2)}.btn.navy{background:var(--navy)}.btn.navy:hover{background:var(--navy2)}
+  .btn.ghost{background:#fff;color:var(--navy);border:2px solid var(--border)}.btn:disabled{opacity:.4;cursor:default}
+  .progress{height:8px;background:var(--border);border-radius:10px;overflow:hidden;margin:.5rem 0}
+  .progress>div{height:100%;background:var(--orange);width:0;transition:width .3s}
+  .timer{font-weight:800;font-size:1.1rem;color:var(--navy);background:#fff;border:2px solid var(--border);padding:.2rem .7rem;border-radius:10px}
+  .timer.warn{color:var(--rouge);border-color:var(--rouge)}
+  .result-big{font-size:3rem;font-weight:800;text-align:center;margin:.4rem 0}
+  .result-big.pass{color:var(--vert)}.result-big.fail{color:var(--rouge)}
+  .proc details{background:var(--card);border:1px solid var(--border);border-radius:12px;margin:.6rem 0;overflow:hidden}
+  .proc summary{cursor:pointer;font-weight:700;color:var(--navy);padding:.9rem 1rem;font-size:1.05rem;list-style:none}
+  .proc summary::-webkit-details-marker{display:none}
+  .proc summary::before{content:"▸ ";color:var(--orange)}.proc details[open] summary::before{content:"▾ "}
+  .proc .body{padding:0 1.1rem 1rem}
+  .crit{display:flex;align-items:flex-start;gap:.7rem;padding:.6rem;border-bottom:1px solid var(--border)}
+  .crit:last-child{border-bottom:none}
+  .crit input[type=checkbox]{width:26px;height:26px;flex:0 0 auto;accent-color:var(--vert);margin-top:2px}
+  .crit .ctxt{flex:1}.crit .elim{font-size:.78rem;color:var(--rouge);font-weight:700}
+  .eval-summary{position:sticky;bottom:0;background:var(--navy);color:#fff;border-radius:12px;padding:.8rem 1rem;margin-top:.8rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
+  .eval-summary .score{font-size:1.3rem;font-weight:800}
+  .field{padding:.55rem;border:2px solid var(--border);border-radius:8px;font-size:1rem;font-family:inherit}
+  .synth-row{display:flex;justify-content:space-between;padding:.7rem;border-bottom:1px solid var(--border)}
+  .foot{text-align:center;color:var(--txt3);font-size:.85rem;padding:1.5rem 0}
+  .pill{display:inline-block;background:#eef2f6;border-radius:20px;padding:.2rem .7rem;font-size:.82rem;color:var(--txt2);margin:.15rem}
+  @media(max-width:520px){body{font-size:16px}h1{font-size:1.3rem}.app{padding:.4rem}}
+  @media print{header.top,nav.tabs,.btn{display:none!important}.card{box-shadow:none;border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="top">
+    <span class="logo">❄️ inerWeb Édu</span>
+    <span class="tag">Habilitation Fluide</span>
+    <span id="modeLabel"></span>
+    <a class="home" href="index.html">🏠 Mission F-GAZ</a>
+  </header>
+
+  <nav class="tabs" id="nav"></nav>
+
+  <!-- ============ ACCUEIL / CHOIX D'ESPACE ============ -->
+  <section class="panel active" id="home">
+    <div class="card">
+      <h1>🎓 Habilitation aux fluides frigorigènes</h1>
+      <p class="lead">Dispositif complet de préparation et d'évaluation à l'attestation d'aptitude à la manipulation des gaz à effet de serre fluorés — conforme au règlement (UE) 2024/573 (F-Gas III) et à l'arrêté du 21 novembre 2025.</p>
+      <p>Choisis ton espace :</p>
+      <div class="spaces">
+        <div class="space" onclick="enterMode('auto')">
+          <div class="ic">🧑‍🎓</div><div class="nm">Auto-formation</div>
+          <div class="ds">Apprendre, comprendre, réviser et mémoriser en autonomie.</div>
+          <div class="who">Élève / stagiaire</div>
+        </div>
+        <div class="space" onclick="enterMode('forma')">
+          <div class="ic">👨‍🏫</div><div class="nm">Formation</div>
+          <div class="ds">Supports de cours structurés, objectifs et procédures pratiques.</div>
+          <div class="who">Formateur</div>
+        </div>
+        <div class="space" onclick="enterMode('eval')">
+          <div class="ic">✅</div><div class="nm">Évaluation</div>
+          <div class="ds">Épreuve théorique et grille pratique, synthèse de l'aptitude.</div>
+          <div class="who">Évaluateur</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>🧩 Un dispositif en trois temps</h2>
+      <p>Ces trois espaces forment un système cohérent : l'élève <b>apprend en autonomie</b>, le formateur <b>structure et approfondit</b>, l'évaluateur <b>vérifie les acquis</b> selon une grille précise. Théorie et pratique sont reliées du premier exercice jusqu'à l'évaluation finale.</p>
+      <div class="info-box"><b>Nouveautés F-Gas III intégrées :</b> attestation valable <b>7 ans</b>, fluides de substitution et naturels (A2L / A3), efficacité énergétique, récupération renforcée.</div>
+    </div>
+  </section>
+
+  <!-- ============ AUTO-FORMATION : ACCUEIL ============ -->
+  <section class="panel" id="accueil">
+    <div class="card">
+      <h1>🧑‍🎓 Espace Auto-formation</h1>
+      <p class="lead">Ici, tu avances à ton rythme : tu révises, tu t'entraînes, tu comprends tes erreurs et tu te testes en conditions d'examen.</p>
+      <h3>Méthode conseillée</h3>
+      <ul>
+        <li><b>1. Je révise</b> un thème (onglet « Révision ») — lis et relis, c'est ton cours.</li>
+        <li><b>2. Je m'entraîne</b> (onglet « QCM ») — chaque réponse est expliquée, c'est là qu'on apprend.</li>
+        <li><b>3. Je me teste</b> (onglet « Examen blanc ») — en conditions réelles, chronométré.</li>
+        <li><b>4. Je recommence</b> les thèmes où je me trompe. La mémorisation vient de la répétition.</li>
+      </ul>
+      <div class="ok-box"><b>Astuce mémorisation :</b> après chaque erreur, reformule la bonne réponse à voix haute avec tes mots. Tu retiens mieux ce que tu expliques.</div>
+    </div>
+  </section>
+
+  <!-- AUTO : REVISION -->
+  <section class="panel" id="theorie">
+    <div class="card">
+      <h2>📚 Révision par thème</h2>
+      <p>Les 6 domaines à maîtriser. Clique un thème pour réviser, puis enchaîne sur le QCM.</p>
+      <div class="theme-grid" id="themeGrid"></div>
+    </div>
+    <div class="card" id="themeContent" style="display:none">
+      <button class="btn ghost" onclick="closeTheme()">← Retour aux thèmes</button>
+      <div id="themeBody"></div>
+      <button class="btn" onclick="quizFromTheme()">📝 S'entraîner sur ce thème →</button>
+    </div>
+  </section>
+
+  <!-- AUTO : QCM -->
+  <section class="panel" id="quiz">
+    <div class="card">
+      <h2>📝 Entraînement QCM</h2>
+      <p>Correction et explication immédiates après chaque réponse — le mode pour apprendre.</p>
+      <div class="theme-grid" id="quizThemeGrid"></div>
+      <div style="margin-top:.8rem"><button class="btn navy" onclick="startQuiz('all')">🎲 Tous les thèmes mélangés</button></div>
+    </div>
+    <div class="card q-wrap" id="quizBox" style="display:none">
+      <div class="q-meta"><span id="qProgress">1 / 10</span><span id="qScore">✅ 0 · ❌ 0</span></div>
+      <div class="progress"><div id="qBar"></div></div>
+      <span class="q-theme" id="qTheme"></span>
+      <div class="q-text" id="qText"></div>
+      <div class="choices" id="qChoices"></div>
+      <div class="explain" id="qExplain"></div>
+      <div style="display:flex;gap:.6rem;justify-content:space-between;margin-top:.6rem;flex-wrap:wrap">
+        <button class="btn ghost" onclick="quitQuiz()">Quitter</button>
+        <button class="btn" id="qNext" onclick="nextQuestion()" disabled>Suivante →</button>
+      </div>
+    </div>
+    <div class="card q-wrap" id="quizResult" style="display:none">
+      <h2>Résultat de l'entraînement</h2>
+      <div class="result-big" id="qResultPct">0%</div>
+      <p id="qResultTxt" style="text-align:center"></p>
+      <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:.8rem">
+        <button class="btn" onclick="showPanel('quiz')">Choisir un autre thème</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTO : EXAMEN BLANC (entrainement) -->
+  <section class="panel" id="examen">
+    <div class="card" id="examIntro">
+      <h2>⏱️ Examen blanc d'entraînement</h2>
+      <p>Tirage aléatoire, chronométré, sans correction immédiate — pour te mettre en situation. La correction détaillée s'affiche à la fin.</p>
+      <p>Nombre de questions :
+        <button class="btn ghost exq" data-n="15" onclick="setExQ(15,this)">15</button>
+        <button class="btn ghost exq active" data-n="20" onclick="setExQ(20,this)">20</button>
+        <button class="btn ghost exq" data-n="30" onclick="setExQ(30,this)">30</button>
+      </p>
+      <p>Temps par question :
+        <button class="btn ghost ext" data-s="0" onclick="setExT(0,this)">Libre</button>
+        <button class="btn ghost ext active" data-s="60" onclick="setExT(60,this)">60 s</button>
+        <button class="btn ghost ext" data-s="45" onclick="setExT(45,this)">45 s</button>
+      </p>
+      <button class="btn navy" onclick="startExam(false)">🚀 Lancer l'examen blanc</button>
+    </div>
+    <div class="card q-wrap" id="examBox" style="display:none">
+      <div class="q-meta"><span id="exProgress">1 / 20</span><span class="timer" id="exTimer">60</span></div>
+      <div class="progress"><div id="exBar"></div></div>
+      <span class="q-theme" id="exTheme"></span>
+      <div class="q-text" id="exText"></div>
+      <div class="choices" id="exChoices"></div>
+      <div style="display:flex;gap:.6rem;justify-content:space-between;margin-top:.6rem">
+        <button class="btn ghost" onclick="quitExam()">Abandonner</button>
+        <button class="btn" id="exNext" onclick="nextExam()">Suivante →</button>
+      </div>
+    </div>
+    <div class="card q-wrap" id="examResult" style="display:none">
+      <h2>Résultat</h2>
+      <div class="result-big" id="exResultPct">0%</div>
+      <p id="exVerdict" style="text-align:center;font-weight:700"></p>
+      <p id="exDetail" style="text-align:center;color:var(--txt2)"></p>
+      <h3>Correction détaillée</h3>
+      <div id="exReview"></div>
+      <button class="btn" onclick="backToExamIntro()">Refaire</button>
+    </div>
+  </section>
+
+  <!-- ============ FORMATION : CADRE LEGAL ============ -->
+  <section class="panel" id="cadre">
+    <div class="card">
+      <h2>⚖️ Le cadre réglementaire</h2>
+      <p>Toute intervention sur un circuit contenant des fluides frigorigènes fluorés nécessite une <b>attestation d'aptitude</b> valide. Le cadre est européen et français.</p>
+      <h3>Textes de référence</h3>
+      <ul>
+        <li><b>Règlement (UE) 2024/573</b> (F-Gas III) — remplace le 517/2014, applicable depuis le 11 mars 2024.</li>
+        <li><b>Arrêté du 21 novembre 2025</b> — délivrance des attestations d'aptitude.</li>
+        <li><b>Code de l'environnement</b>, articles R. 543-75 à R. 543-123.</li>
+      </ul>
+      <div class="info-box"><b>Validité :</b> attestation valable <b>7 ans</b>. Les attestations de l'ancien régime : remise à niveau <b>avant le 12 mars 2029</b>.</div>
+    </div>
+    <div class="card">
+      <h2>🔁 Obligations clés</h2>
+      <table>
+        <thead><tr><th>Obligation</th><th>Règle</th><th>Référence</th></tr></thead>
+        <tbody>
+          <tr><td>Réparation d'une fuite</td><td>Sans retard injustifié</td><td>Art. 5</td></tr>
+          <tr><td>Re-contrôle après réparation</td><td>Entre 24 h et 1 mois</td><td>Art. 5</td></tr>
+          <tr><td>Contrôle d'étanchéité périodique</td><td>≥5 t : 12 mois · ≥50 t : 6 mois · ≥500 t : 3 mois (×2 si détection)</td><td>Art. 4</td></tr>
+          <tr><td>Conservation du registre</td><td>5 ans</td><td>Art. 7</td></tr>
+          <tr><td>Dégazage atmosphérique</td><td>Interdit — récupération obligatoire</td><td>Art. 5 / 8</td></tr>
+        </tbody>
+      </table>
+      <p class="pill">🧮 tCO₂e = (Charge kg × PRP) / 1000</p>
+    </div>
+  </section>
+
+  <!-- FORMATION : CATEGORIES -->
+  <section class="panel" id="categories">
+    <div class="card">
+      <h2>🗂️ Les 5 catégories d'attestation</h2>
+      <p>La catégorie définit le champ d'intervention autorisé et le contenu de l'épreuve.</p>
+      <div class="cat-grid">
+        <div class="cat"><div class="num">I</div><div class="t">Toutes interventions</div><div class="d">Tous équipements, toutes charges. Niveau BAC PRO MFER.</div></div>
+        <div class="cat"><div class="num">II</div><div class="t">Charge &lt; 2 kg</div><div class="d">Toutes opérations, équipements &lt; 2 kg. Niveau CAP IFCA.</div></div>
+        <div class="cat"><div class="num">III</div><div class="t">Récupération</div><div class="d">Récupération uniquement, &lt; 2 kg.</div></div>
+        <div class="cat"><div class="num">IV</div><div class="t">Contrôle étanchéité</div><div class="d">Contrôle d'étanchéité uniquement.</div></div>
+        <div class="cat"><div class="num">V</div><div class="t">Transport frigo</div><div class="d">Camions et remorques frigorifiques.</div></div>
+      </div>
+      <div class="info-box">La catégorie <b>I</b> est la cible naturelle d'un BAC PRO froid : la plus complète, théorie + pratique sur tous types d'équipements.</div>
+    </div>
+  </section>
+
+  <!-- FORMATION : COURS -->
+  <section class="panel proc" id="coursforma">
+    <div class="card">
+      <h2>👨‍🏫 Supports de cours par thème</h2>
+      <p>Chaque thème : objectifs pédagogiques + contenu. À projeter ou distribuer. Les mêmes thèmes alimentent l'auto-formation et l'évaluation, pour une cohérence totale.</p>
+    </div>
+    <div id="coursAccordion" class="proc"></div>
+  </section>
+
+  <!-- FORMATION : PRATIQUE -->
+  <section class="panel proc" id="pratique">
+    <div class="card">
+      <h2>🔧 Procédures pratiques — fiches de geste</h2>
+      <p>Les opérations de l'épreuve pratique (catégorie I) : étapes, sécurité, critères évalués.</p>
+    </div>
+    <details><summary>1. Brasage d'un raccord frigorifique</summary><div class="body">
+      <div class="obj"><b>Objectif :</b> réaliser un assemblage étanche sans oxydation interne.</div>
+      <h3>Étapes</h3><ul>
+        <li>Nettoyer, ébavurer ; emboîtement correct.</li>
+        <li><b>Balayage à l'azote</b> pendant le brasage (évite la calamine).</li>
+        <li>Chauffe homogène ; métal d'apport adapté (cuivre-phosphore sur cuivre).</li>
+        <li>Refroidissement, contrôle visuel du cordon.</li></ul>
+      <h3>Sécurité</h3><ul><li>EPI, écran anti-feu, extincteur, ventilation.</li></ul>
+      <h3>Critères évalués</h3><ul><li>Balayage azote effectif · qualité du joint · sécurité.</li></ul>
+    </div></details>
+    <details><summary>2. Mise sous pression & contrôle d'étanchéité (azote)</summary><div class="body">
+      <div class="obj"><b>Objectif :</b> garantir l'étanchéité avant mise en service.</div>
+      <h3>Étapes</h3><ul>
+        <li>Pressuriser à l'<b>azote</b> (jamais oxygène ni air comprimé seul).</li>
+        <li>Recherche de fuites : eau savonneuse / détecteur ; surveiller la tenue de pression.</li>
+        <li>Consigner pression d'essai et durée.</li></ul>
+      <div class="disclaimer">⚠️ Ne jamais mélanger manipulation fluide réel et essai azote sur le même exercice.</div>
+      <h3>Critères évalués</h3><ul><li>Méthode · lecture pression · localisation des fuites.</li></ul>
+    </div></details>
+    <details><summary>3. Tirage au vide</summary><div class="body">
+      <div class="obj"><b>Objectif :</b> déshydrater et dégazer le circuit.</div>
+      <h3>Étapes</h3><ul>
+        <li>Raccorder la pompe à vide via le manifold ; tirer le vide.</li>
+        <li>Descendre sous ~<b>500 µmHg (≈ 5 mbar / 0,67 mbar abs)</b>.</li>
+        <li>Test de remontée (casse-vide) : absence de fuite / d'humidité.</li></ul>
+      <h3>Critères évalués</h3><ul><li>Niveau de vide · test de tenue · raccordements.</li></ul>
+    </div></details>
+    <details><summary>4. Charge en fluide frigorigène</summary><div class="body">
+      <div class="obj"><b>Objectif :</b> charger la masse exacte et vérifier le fonctionnement.</div>
+      <h3>Étapes</h3><ul>
+        <li>Charge à la <b>balance</b> ; zéotropes (R407C…) en <b>phase liquide</b>.</li>
+        <li>Contrôle surchauffe / sous-refroidissement, pressions HP/BP.</li>
+        <li>Étiquetage (fluide, charge, tCO₂e).</li></ul>
+      <h3>Critères évalués</h3><ul><li>Précision de charge · paramètres · étiquetage.</li></ul>
+    </div></details>
+    <details><summary>5. Récupération du fluide</summary><div class="body">
+      <div class="obj"><b>Objectif :</b> récupérer sans rejet et tracer l'opération.</div>
+      <h3>Étapes</h3><ul>
+        <li>Groupe de récupération + bouteille adaptée (taux de remplissage respecté).</li>
+        <li>Récupération totale — <b>dégazage interdit</b>.</li>
+        <li>Traçabilité : fiche d'intervention (CERFA 15497*04), registre.</li></ul>
+      <h3>Critères évalués</h3><ul><li>Récupération complète · sécurité bouteille · traçabilité.</li></ul>
+    </div></details>
+    <details><summary>6. Spécificités fluides A2L / A3 (F-Gas III)</summary><div class="body">
+      <div class="obj"><b>Objectif :</b> manipuler en sécurité les fluides inflammables.</div>
+      <ul>
+        <li><b>A2L</b> (R32, R1234yf, R454B) : faiblement inflammables — charges limites/surface, ventilation, détection adaptée.</li>
+        <li><b>A3</b> (R290, R600a) : très inflammables — zone ventilée, pas d'ignition, outillage anti-étincelle.</li>
+        <li><b>B2L</b> (R717) : toxique + inflammable — double précaution, EPI spécifiques.</li></ul>
+      <div class="disclaimer">Un PRP bas ne veut jamais dire « sans risque ». Toujours énoncer la classe NF EN 378.</div>
+    </div></details>
+  </section>
+
+  <!-- ============ EVALUATION : THEORIQUE ============ -->
+  <section class="panel" id="evaltheo">
+    <div class="card" id="etIntro">
+      <h2>✅ Auto-évaluation d'entraînement (théorique)</h2>
+      <div class="disclaimer" style="background:#fff6e8;border-left:5px solid var(--orange);border-radius:10px;padding:.8rem 1rem;margin:.6rem 0"><b>⚠️ Ceci est un entraînement, pas l'examen officiel.</b> L'évaluation certificative (live ou DM, examen blanc d'habilitation) se passe sur le système dédié <b>fgas-eval-mfer</b> : <a href="https://frigorx.github.io/fgas-eval-mfer/dm.html" target="_blank" rel="noopener">ouvrir l'évaluation officielle ↗</a>.</div>
+      <div class="info-box"><b>Modèle catégorie I (à valider sur le référentiel officiel) :</b> QCM de <b>60 questions</b>, seuil <b>70 % (≈ 14/20)</b>, durée indicative 1 h. L'aptitude est prononcée si théorie <b>ET</b> pratique sont réussies.</div>
+      <p>Candidat : <input id="etName" class="field" placeholder="Nom du candidat"></p>
+      <p>Temps par question :
+        <button class="btn ghost ett active" data-s="60" onclick="setEtT(60,this)">60 s</button>
+        <button class="btn ghost ett" data-s="45" onclick="setEtT(45,this)">45 s</button>
+        <button class="btn ghost ett" data-s="0" onclick="setEtT(0,this)">Libre</button>
+      </p>
+      <div class="disclaimer">Banque embarquée actuelle : <b id="bankCount">0</b> questions. Pour un examen réel de 60 questions, la banque doit être complétée — l'examen tire actuellement le maximum disponible.</div>
+      <button class="btn navy" onclick="startExam(true)">🚀 Démarrer l'épreuve</button>
+    </div>
+    <div class="card q-wrap" id="etBox" style="display:none">
+      <div class="q-meta"><span id="etProgress">1 / 60</span><span class="timer" id="etTimer">60</span></div>
+      <div class="progress"><div id="etBar"></div></div>
+      <span class="q-theme" id="etTheme"></span>
+      <div class="q-text" id="etText"></div>
+      <div class="choices" id="etChoices"></div>
+      <div style="display:flex;gap:.6rem;justify-content:space-between;margin-top:.6rem">
+        <button class="btn ghost" onclick="quitExam()">Abandonner</button>
+        <button class="btn" id="etNext" onclick="nextExam()">Suivante →</button>
+      </div>
+    </div>
+    <div class="card q-wrap" id="etResult" style="display:none">
+      <h2>Résultat épreuve théorique</h2>
+      <div class="result-big" id="etResultPct">0%</div>
+      <p id="etVerdict" style="text-align:center;font-weight:700"></p>
+      <p id="etDetail" style="text-align:center;color:var(--txt2)"></p>
+      <div style="text-align:center;margin-top:.6rem"><button class="btn" onclick="showPanel('evalsynthese')">Voir la synthèse →</button> <button class="btn ghost" onclick="backToEtIntro()">Refaire</button></div>
+      <h3>Correction détaillée</h3>
+      <div id="etReview"></div>
+    </div>
+  </section>
+
+  <!-- EVALUATION : PRATIQUE -->
+  <section class="panel" id="evalpratique">
+    <div class="card">
+      <h2>✅ Épreuve pratique — grille évaluateur</h2>
+      <p>Coche les critères réalisés par le candidat. Calcul automatique. Les critères <span style="color:var(--rouge);font-weight:700">éliminatoires</span> (sécurité) entraînent l'échec s'ils ne sont pas validés.</p>
+      <p>Candidat : <input id="candName" class="field" placeholder="Nom du candidat"></p>
+    </div>
+    <div class="card">
+      <h3>Brasage & étanchéité</h3><div id="grid1"></div>
+      <h3>Vide, charge & paramètres</h3><div id="grid2"></div>
+      <h3>Récupération, sécurité & traçabilité</h3><div id="grid3"></div>
+      <div class="eval-summary">
+        <span id="evalScore" class="score">0 / 0</span>
+        <span id="evalVerdict">—</span>
+        <button class="btn ghost" onclick="resetEval()">Réinitialiser</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVALUATION : SYNTHESE -->
+  <section class="panel" id="evalsynthese">
+    <div class="card">
+      <h2>📋 Synthèse d'aptitude</h2>
+      <p>Bilan combiné théorie + pratique. L'aptitude (catégorie I) requiert la réussite des <b>deux</b> épreuves (seuil 70 %).</p>
+      <div id="synthBox"></div>
+      <div style="margin-top:.8rem;display:flex;gap:.6rem;flex-wrap:wrap">
+        <button class="btn" onclick="window.print()">🖨️ Imprimer / PDF</button>
+        <button class="btn ghost" onclick="exportCSV()">⬇️ Exporter CSV</button>
+      </div>
+      <div class="disclaimer" style="margin-top:.8rem">Document de travail interne. La délivrance officielle de l'attestation relève du référentiel et des procédures de l'organisme évaluateur certifié.</div>
+    </div>
+  </section>
+
+  <!-- ============ RESSOURCES (commun) ============ -->
+  <section class="panel" id="ressources">
+    <div class="card">
+      <h2>📎 Ressources réglementaires</h2>
+      <ul>
+        <li><a href="https://eur-lex.europa.eu/eli/reg/2024/573/oj?locale=fr" target="_blank" rel="noopener">Règlement (UE) 2024/573 (F-Gas III)</a></li>
+        <li><a href="https://aida.ineris.fr/" target="_blank" rel="noopener">AIDA / INERIS — textes environnement</a></li>
+        <li><a href="https://www.afce.asso.fr/" target="_blank" rel="noopener">AFCE — Alliance Froid Climatisation Environnement</a></li>
+        <li><a href="https://www.francecompetences.fr/recherche/rs/5638/" target="_blank" rel="noopener">France Compétences — RS5638</a></li>
+        <li><a href="https://www.legifrance.gouv.fr/" target="_blank" rel="noopener">Légifrance — Code de l'environnement</a></li>
+      </ul>
+      <div class="disclaimer">Seuils, fréquences, catégories et format d'évaluation donnés à titre pédagogique : vérifier la version en vigueur du référentiel avant tout usage officiel.</div>
+    </div>
+    <div class="foot">inerWeb Édu — Habilitation Fluide · auto-formation · formation · évaluation · conforme F-Gas III (2024/573 · arrêté 21/11/2025)</div>
+  </section>
+
+</div>
+
+<script>
+/* ===================== THÈMES ===================== */
+const THEMES = {
+  reglementation:{icon:"⚖️",title:"Réglementation F-Gas",sub:"Textes, obligations, délais",
+    obj:["Citer les textes en vigueur","Connaître les délais et obligations clés","Comprendre le phase-down et la validité 7 ans"],
+    body:`<h3>Réglementation F-Gas</h3>
+      <p>Le règlement <b>(UE) 2024/573</b> (F-Gas III) organise la réduction progressive (phase-down) des HFC, avec un objectif de zéro HFC à horizon 2050.</p>
+      <ul><li>Réparer les fuites <b>sans retard injustifié</b>, re-contrôle 24 h–1 mois (art. 5).</li>
+      <li>Contrôles d'étanchéité selon la charge en tCO₂e (art. 4).</li>
+      <li>Registre conservé <b>5 ans</b> (art. 7).</li>
+      <li><b>Dégazage interdit</b> : récupération obligatoire.</li>
+      <li>Attestation valable <b>7 ans</b> ; remise à niveau de l'ancien régime avant le 12/03/2029.</li></ul>`},
+  thermo:{icon:"🌡️",title:"Thermodynamique & circuit",sub:"4 organes, surchauffe, COP/EER",
+    obj:["Nommer et situer les 4 organes","Calculer surchauffe et sous-refroidissement","Distinguer COP et EER"],
+    body:`<h3>Le circuit frigorifique</h3>
+      <p>4 organes : <b>Compresseur → Condenseur → Détendeur → Évaporateur</b> (« la croix du frigoriste »).</p>
+      <ul><li><b>Compresseur</b> : aspire/comprime (BP→HP). <b>Condenseur</b> : rejette la chaleur (le fluide se liquéfie).</li>
+      <li><b>Détendeur</b> : abaisse la pression et dose le fluide. <b>Évaporateur</b> : absorbe la chaleur (le fluide se vaporise).</li>
+      <li><b>Surchauffe</b> = T° aspiration − T° évaporation saturée.</li>
+      <li><b>Sous-refroidissement</b> = T° condensation saturée − T° liquide.</li>
+      <li><b>COP</b> = P. calorifique / P. électrique (chaud) · <b>EER</b> = P. frigorifique / P. élec (froid).</li></ul>`},
+  fluides:{icon:"🧪",title:"Fluides & sécurité",sub:"Classes A1/A2L/A3/B2L",
+    obj:["Classer un fluide selon NF EN 378","Éviter le piège R290=A3","Associer classe et précautions"],
+    body:`<h3>Classification de sécurité (NF EN 378 / ASHRAE 34)</h3>
+      <p>Deux axes : toxicité (A faible / B élevée) et inflammabilité (1 non · 2L faible · 2 · 3 très).</p>
+      <table><thead><tr><th>Classe</th><th>Signification</th><th>Exemples</th></tr></thead><tbody>
+      <tr><td><span class="badge b-a1">A1</span></td><td>Faible toxicité, non inflammable</td><td>R134a, R410A, R407C, R404A, R744</td></tr>
+      <tr><td><span class="badge b-a2l">A2L</span></td><td>Faible toxicité, faiblement inflammable</td><td>R32, R1234yf, R454B</td></tr>
+      <tr><td><span class="badge b-a3">A3</span></td><td>Faible toxicité, très inflammable</td><td>R290, R600a, R1270</td></tr>
+      <tr><td><span class="badge b-b2l">B2L</span></td><td>Toxicité élevée, faiblement inflammable</td><td>R717 (NH₃)</td></tr></tbody></table>
+      <div class="disclaimer">Piège classique : le <b>R290 (propane) est A3</b>, pas A2L. Tout hydrocarbure (-ane/-ène) est A3.</div>`},
+  environnement:{icon:"🌍",title:"Environnement & PRP",sub:"GWP, tCO₂e, seuils",
+    obj:["Calculer un équivalent tCO₂e","Associer seuil et fréquence de contrôle","Connaître les PRP usuels"],
+    body:`<h3>Impact environnemental</h3>
+      <p><b>tCO₂e = (Charge kg × PRP) / 1000.</b> Cette valeur fixe la fréquence des contrôles d'étanchéité.</p>
+      <ul><li>≥ 5 tCO₂e → annuel · ≥ 50 → semestriel · ≥ 500 → trimestriel + détection automatique (intervalles ×2 si détection installée).</li>
+      <li>PRP (AR4) : R744=1, R290=3, R32=675, R134a=1430, R410A=2088, R404A=3922.</li>
+      <li>F-Gas III : AR4 maintenu pour les HFC ; AR6 pour HFO et fluides non fluorés.</li></ul>
+      <p><b>Exemple :</b> 10 kg de R410A → (10×2088)/1000 = <b>20,88 tCO₂e</b> → contrôle annuel.</p>`},
+  recuperation:{icon:"♻️",title:"Récupération & traçabilité",sub:"Bouteilles, CERFA, registre",
+    obj:["Récupérer sans rejet","Respecter le taux de remplissage","Assurer la traçabilité"],
+    body:`<h3>Récupération & traçabilité</h3>
+      <ul><li>Récupération <b>obligatoire et complète</b> ; dégazage interdit.</li>
+      <li>Bouteille adaptée, <b>taux de remplissage maximal respecté</b> (jamais 100 %).</li>
+      <li>Fiche d'intervention (CERFA 15497*04) + registre des mouvements.</li>
+      <li>Réutilisation seulement après <b>recyclage</b> (nettoyage) ou <b>régénération</b> (remise aux specs d'origine).</li></ul>`},
+  securite:{icon:"🛡️",title:"Sécurité & A2L/A3",sub:"EPI, inflammabilité, pression",
+    obj:["Choisir les EPI adaptés","Sécuriser une manipulation A2L/A3","Connaître les risques CO₂ et NH₃"],
+    body:`<h3>Sécurité au poste</h3>
+      <ul><li>EPI adaptés ; ventilation ; pas de source d'ignition près des A2L/A3.</li>
+      <li><b>A3</b> : zone ventilée, outillage anti-étincelle, charges limitées (selon surface).</li>
+      <li><b>R744 (CO₂)</b> : très haute pression (jusqu'à 120 bar transcritique), risque d'asphyxie en local fermé.</li>
+      <li><b>R717 (NH₃)</b> : toxique — détection, rince-œil, EPI spécifiques.</li>
+      <li>Essais sous pression à l'<b>azote</b> — jamais à l'oxygène (explosion avec les huiles).</li></ul>`}
+};
+
+/* ===================== QUESTIONS ===================== */
+const QUESTIONS = [
+  {th:"reglementation",q:"Délai de re-contrôle d'étanchéité après réparation d'une fuite ?",c:["Sous 14 jours","Entre 24 h et 1 mois","Sous 48 h","Pas de re-contrôle"],a:1,e:"Art. 5 (2024/573) : re-contrôle au plus tôt 24 h après remise en service, au plus tard 1 mois après réparation."},
+  {th:"reglementation",q:"La réparation d'une fuite détectée doit être faite :",c:["Dans les 14 jours","Sans retard injustifié","Sous 30 jours","À la prochaine maintenance"],a:1,e:"Le règlement impose « sans retard injustifié » — aucun délai chiffré pour la réparation."},
+  {th:"reglementation",q:"Durée de conservation du registre d'intervention :",c:["1 an","3 ans","5 ans","10 ans"],a:2,e:"5 ans minimum (art. 7 du 2024/573)."},
+  {th:"reglementation",q:"Le dégazage volontaire dans l'atmosphère est :",c:["Toléré en petite quantité","Interdit","Autorisé pour les HFO","Autorisé en extérieur"],a:1,e:"Interdit : récupération obligatoire."},
+  {th:"reglementation",q:"Validité de la nouvelle attestation d'aptitude (F-Gas III) :",c:["À vie","5 ans","7 ans","10 ans"],a:2,e:"7 ans, avec remise à niveau périodique."},
+  {th:"reglementation",q:"Depuis quand le règlement 2024/573 est-il applicable ?",c:["1er janvier 2015","11 mars 2024","1er janvier 2030","12 mars 2029"],a:1,e:"Publié le 20/02/2024, applicable depuis le 11 mars 2024."},
+  {th:"reglementation",q:"Objectif du phase-down des HFC à l'horizon 2050 :",c:["Réduction de 50 %","Maintien","Zéro HFC","Doublement"],a:2,e:"F-Gas III vise un objectif de zéro HFC à horizon 2050."},
+  {th:"reglementation",q:"Les anciennes attestations doivent être remises à niveau avant :",c:["le 11/03/2024","le 12/03/2027","le 12/03/2029","le 01/01/2030"],a:2,e:"Remise à niveau avant le 12 mars 2029 (5 ans après l'entrée en vigueur)."},
+  {th:"thermo",q:"Ordre de circulation du fluide :",c:["Compresseur → Condenseur → Détendeur → Évaporateur","Compresseur → Évaporateur → Détendeur → Condenseur","Condenseur → Compresseur → Évaporateur → Détendeur","Détendeur → Compresseur → Condenseur → Évaporateur"],a:0,e:"La croix du frigoriste : Compresseur → Condenseur → Détendeur → Évaporateur."},
+  {th:"thermo",q:"La surchauffe se calcule par :",c:["T° condensation − T° liquide","T° aspiration − T° évaporation saturée","T° refoulement − T° aspiration","T° évaporation − T° ambiante"],a:1,e:"Surchauffe = T° aspiration − T° d'évaporation saturée."},
+  {th:"thermo",q:"Le sous-refroidissement se mesure :",c:["À l'aspiration","En sortie de condenseur (côté liquide)","Dans l'évaporateur","Au refoulement"],a:1,e:"Sous-refroidissement = T° condensation saturée − T° liquide en sortie condenseur."},
+  {th:"thermo",q:"Le COP en mode chaud est :",c:["P. élec / P. frigo","P. calorifique / P. électrique","P. froid / P. chaud","Charge / PRP"],a:1,e:"COP = puissance calorifique utile / puissance électrique absorbée."},
+  {th:"thermo",q:"Rôle du détendeur :",c:["Comprimer le gaz","Abaisser la pression et doser le fluide","Rejeter la chaleur","Aspirer le fluide"],a:1,e:"Le détendeur abaisse la pression (détente) et dose le fluide vers l'évaporateur."},
+  {th:"thermo",q:"Dans l'évaporateur, le fluide :",c:["Se liquéfie","Se vaporise en absorbant la chaleur","Reste liquide","Se comprime"],a:1,e:"L'évaporateur produit le froid : le fluide se vaporise en absorbant la chaleur."},
+  {th:"fluides",q:"Classe de sécurité du R290 (propane) ?",c:["A1","A2L","A3","B2L"],a:2,e:"R290 = A3 (très inflammable). Piège classique : il n'est PAS A2L."},
+  {th:"fluides",q:"Le R32 appartient à la classe :",c:["A1","A2L","A3","B1"],a:1,e:"R32 = A2L (faiblement inflammable), PRP 675."},
+  {th:"fluides",q:"Le R717 (ammoniac) est classé :",c:["A1","A2L","A3","B2L"],a:3,e:"NH₃ = B2L : toxique ET faiblement inflammable."},
+  {th:"fluides",q:"Lequel est A1 (non inflammable) ?",c:["R290","R410A","R1234yf","R600a"],a:1,e:"R410A = A1. R290/R600a = A3, R1234yf = A2L."},
+  {th:"fluides",q:"R744 correspond à :",c:["L'ammoniac","Le propane","Le CO₂","Le R134a"],a:2,e:"R744 = CO₂ (A1), naturel, haute pression."},
+  {th:"fluides",q:"Le R1234yf est de classe :",c:["A1","A2L","A3","B2L"],a:1,e:"R1234yf (HFO) = A2L, imposé en climatisation automobile."},
+  {th:"fluides",q:"Le R600a (isobutane) est :",c:["A1","A2L","A3","B1"],a:2,e:"Hydrocarbure → A3 (très inflammable), utilisé en réfrigération domestique."},
+  {th:"fluides",q:"Un HFO est :",c:["Un hydrochlorofluorocarbure","Une hydrofluorooléfine à très bas PRP","Un gaz toxique","Un hydrocarbure"],a:1,e:"Les HFO (ex. R1234yf) ont un PRP très bas et suivent l'AR6 sous F-Gas III."},
+  {th:"environnement",q:"Formule de l'équivalent CO₂ :",c:["Charge × PRP","(Charge × PRP) / 1000","Charge / PRP","PRP / Charge"],a:1,e:"tCO₂e = (Charge kg × PRP) / 1000."},
+  {th:"environnement",q:"10 kg de R410A (PRP 2088) représentent :",c:["2,088 tCO₂e","20,88 tCO₂e","208,8 tCO₂e","2088 tCO₂e"],a:1,e:"(10 × 2088)/1000 = 20,88 tCO₂e → contrôle annuel."},
+  {th:"environnement",q:"À partir de quel seuil le contrôle annuel devient-il obligatoire ?",c:["≥ 5 tCO₂e","≥ 50 tCO₂e","≥ 500 tCO₂e","Aucun"],a:0,e:"≥ 5 : annuel ; ≥ 50 : semestriel ; ≥ 500 : trimestriel + détection."},
+  {th:"environnement",q:"Quel fluide a le PRP le plus élevé ?",c:["R32 (675)","R134a (1430)","R410A (2088)","R404A (3922)"],a:3,e:"R404A (3922) — interdit vierge en maintenance."},
+  {th:"environnement",q:"PRP du R744 (CO₂) :",c:["0","1","675","1430"],a:1,e:"Par définition, PRP du CO₂ = 1 (référence)."},
+  {th:"environnement",q:"PRP du R134a :",c:["3","675","1430","2088"],a:2,e:"R134a : PRP 1430 (AR4)."},
+  {th:"environnement",q:"Avec un système de détection de fuite installé, les intervalles de contrôle sont :",c:["Inchangés","Divisés par 2","Doublés","Supprimés"],a:2,e:"Les intervalles sont doublés (×2) si une détection de fuite est installée (art. 5)."},
+  {th:"environnement",q:"Seuil imposant une détection automatique de fuite :",c:["≥ 5 tCO₂e","≥ 50 tCO₂e","≥ 500 tCO₂e","≥ 5000 tCO₂e"],a:2,e:"À partir de 500 tCO₂e, détection automatique de fuite obligatoire."},
+  {th:"recuperation",q:"Que faire du fluide récupéré non régénéré ?",c:["Le rejeter","Le réutiliser directement","Le retourner au distributeur pour analyse/régénération","Le brûler"],a:2,e:"Réutilisable seulement après recyclage/régénération ; sinon retour distributeur."},
+  {th:"recuperation",q:"Document de traçabilité d'une intervention (France) :",c:["La facture","Le CERFA 15497*04","Le bon de livraison","Aucun"],a:1,e:"La fiche d'intervention CERFA 15497*04 trace les mouvements de fluide."},
+  {th:"recuperation",q:"Lors de la récupération, la bouteille doit :",c:["Être remplie à 100 %","Respecter un taux de remplissage maximal","Être à pression atmosphérique","Être en plastique"],a:1,e:"Jamais 100 % : un taux maximal est imposé (dilatation = sécurité)."},
+  {th:"recuperation",q:"Avant d'ouvrir un circuit pour intervention, il faut :",c:["Dégazer à l'air libre","Récupérer le fluide","Augmenter la charge","Rien faire"],a:1,e:"On récupère systématiquement le fluide avant ouverture (dégazage interdit)."},
+  {th:"recuperation",q:"La régénération d'un fluide consiste à :",c:["Le rejeter","Le remettre aux spécifications d'origine","Le mélanger","Le diluer"],a:1,e:"La régénération ramène le fluide aux specs d'origine (≠ simple recyclage)."},
+  {th:"securite",q:"Avec quel gaz réalise-t-on une mise sous pression d'essai ?",c:["L'oxygène","L'air comprimé seul","L'azote","Le fluide lui-même"],a:2,e:"L'azote (inerte). Jamais d'oxygène (explosion avec les huiles)."},
+  {th:"securite",q:"Pour un fluide A3 (propane), précaution essentielle :",c:["Aucune","Zone ventilée, pas d'ignition, outillage anti-étincelle","Espace confiné","Charge illimitée"],a:1,e:"A3 très inflammable : ventilation, pas d'ignition, charges limitées, outillage adapté."},
+  {th:"securite",q:"Le balayage à l'azote pendant le brasage sert à :",c:["Refroidir le tube","Éviter l'oxydation interne (calamine)","Augmenter la pression","Détecter les fuites"],a:1,e:"Il empêche la formation de calamine à l'intérieur du tube."},
+  {th:"securite",q:"Risque spécifique du R744 (CO₂) :",c:["Inflammabilité élevée","Haute pression et asphyxie en local fermé","Toxicité aiguë","Corrosion du cuivre"],a:1,e:"Très haute pression (jusqu'à 120 bar) et asphyxie en espace confiné."},
+  {th:"securite",q:"Méthode directe de recherche de fuite :",c:["Calcul du bilan massique","Eau savonneuse / détecteur électronique / traceur UV","Analyse comptable","Estimation visuelle de l'huile"],a:1,e:"Méthodes directes : eau savonneuse, détecteur électronique, traceur fluorescent + lampe UV."},
+  {th:"securite",q:"La charge limite d'un fluide A2L dans un local dépend surtout :",c:["De la couleur du fluide","De la surface du local","Du prix du fluide","De la marque"],a:1,e:"La charge admissible dépend de la surface/volume du local (sécurité inflammabilité)."},
+  {th:"securite",q:"EPI minimaux pour le brasage :",c:["Aucun","Gants, lunettes/écran, vêtements adaptés","Casque audio","Gants jetables fins"],a:1,e:"Protection des yeux (écran), gants et vêtements adaptés, extincteur à proximité."}
+];
+
+/* ===================== NAV / MODES ===================== */
+const MODES={
+  auto:{label:"Espace Auto-formation",tabs:[["accueil","🎯 Présentation"],["theorie","📚 Révision"],["quiz","📝 QCM"],["examen","⏱️ Examen blanc"],["ressources","📎 Ressources"]]},
+  forma:{label:"Espace Formation",tabs:[["cadre","⚖️ Cadre légal"],["categories","🗂️ Catégories"],["coursforma","👨‍🏫 Cours"],["pratique","🔧 Procédures"],["ressources","📎 Ressources"]]},
+  eval:{label:"Espace Évaluation",tabs:[["evaltheo","✅ Théorique"],["evalpratique","✅ Pratique"],["evalsynthese","📋 Synthèse"],["ressources","📎 Ressources"]]}
+};
+let currentMode=null;
+const navEl=document.getElementById('nav');
+function enterMode(m){
+  currentMode=m;
+  document.getElementById('modeLabel').textContent='· '+MODES[m].label;
+  navEl.innerHTML='<button class="back" onclick="goHome()">← Espaces</button>'+
+    MODES[m].tabs.map(t=>`<button data-p="${t[0]}">${t[1]}</button>`).join('');
+  navEl.querySelectorAll('button[data-p]').forEach(b=>b.onclick=()=>{showPanel(b.dataset.p);});
+  showPanel(MODES[m].tabs[0][0]);
+}
+function goHome(){currentMode=null;document.getElementById('modeLabel').textContent='';navEl.innerHTML='';showPanel('home');}
+function showPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  navEl.querySelectorAll('button[data-p]').forEach(b=>b.classList.toggle('active',b.dataset.p===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ===================== RÉVISION / COURS ===================== */
+const themeGrid=document.getElementById('themeGrid');
+const quizThemeGrid=document.getElementById('quizThemeGrid');
+const coursAcc=document.getElementById('coursAccordion');
+let currentTheme=null;
+Object.entries(THEMES).forEach(([k,v])=>{
+  themeGrid.insertAdjacentHTML('beforeend',`<div class="theme-btn" onclick="openTheme('${k}')"><div class="ti">${v.icon}</div><div class="tt">${v.title}</div><div class="ts">${v.sub}</div></div>`);
+  const n=QUESTIONS.filter(q=>q.th===k).length;
+  quizThemeGrid.insertAdjacentHTML('beforeend',`<div class="theme-btn" onclick="startQuiz('${k}')"><div class="ti">${v.icon}</div><div class="tt">${v.title}</div><div class="ts">${n} questions</div></div>`);
+  coursAcc.insertAdjacentHTML('beforeend',`<details><summary>${v.icon} ${v.title}</summary><div class="body"><div class="obj"><b>Objectifs pédagogiques :</b><ul>${v.obj.map(o=>`<li>${o}</li>`).join('')}</ul></div>${v.body}</div></details>`);
+});
+function openTheme(k){currentTheme=k;document.getElementById('themeBody').innerHTML=THEMES[k].body;
+  document.getElementById('themeContent').style.display='block';
+  document.getElementById('themeContent').scrollIntoView({behavior:'smooth'});}
+function closeTheme(){document.getElementById('themeContent').style.display='none';}
+function quizFromTheme(){showPanel('quiz');startQuiz(currentTheme);}
+
+/* ===================== QUIZ ===================== */
+let qSet=[],qIdx=0,qOk=0,qKo=0;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function startQuiz(theme){
+  qSet=theme==='all'?shuffle(QUESTIONS):shuffle(QUESTIONS.filter(q=>q.th===theme));
+  qSet=qSet.slice(0,12);qIdx=0;qOk=0;qKo=0;
+  document.querySelector('#quiz .card').style.display='none';
+  document.getElementById('quizResult').style.display='none';
+  document.getElementById('quizBox').style.display='block';renderQ();
+}
+function renderQ(){
+  const q=qSet[qIdx];
+  document.getElementById('qProgress').textContent=`${qIdx+1} / ${qSet.length}`;
+  document.getElementById('qScore').textContent=`✅ ${qOk} · ❌ ${qKo}`;
+  document.getElementById('qBar').style.width=`${(qIdx/qSet.length)*100}%`;
+  document.getElementById('qTheme').textContent=THEMES[q.th].title;
+  document.getElementById('qText').textContent=q.q;
+  const ch=document.getElementById('qChoices');ch.innerHTML='';
+  q.c.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>answerQ(i,b);ch.appendChild(b);});
+  document.getElementById('qExplain').className='explain';
+  document.getElementById('qNext').disabled=true;
+}
+function answerQ(i,btn){
+  const q=qSet[qIdx];const btns=document.querySelectorAll('#qChoices button');
+  btns.forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('correct');});
+  if(i===q.a)qOk++;else{qKo++;btn.classList.add('wrong');}
+  const ex=document.getElementById('qExplain');ex.innerHTML=`<b>${i===q.a?'✅ Correct':'❌ Incorrect'} —</b> ${q.e}`;ex.classList.add('show');
+  document.getElementById('qScore').textContent=`✅ ${qOk} · ❌ ${qKo}`;
+  document.getElementById('qNext').disabled=false;
+}
+function nextQuestion(){qIdx++;if(qIdx>=qSet.length)endQuiz();else renderQ();}
+function quitQuiz(){showPanel('quiz');document.querySelector('#quiz .card').style.display='block';document.getElementById('quizBox').style.display='none';}
+function endQuiz(){
+  document.getElementById('quizBox').style.display='none';
+  const pct=Math.round(qOk/qSet.length*100);
+  const r=document.getElementById('qResultPct');r.textContent=pct+'%';r.className='result-big '+(pct>=70?'pass':'fail');
+  document.getElementById('qResultTxt').textContent=`${qOk}/${qSet.length}. ${pct>=70?'Bravo, niveau attendu atteint !':'Continue à réviser ce thème.'}`;
+  document.getElementById('quizResult').style.display='block';
+}
+
+/* ===================== EXAMEN (entrainement + certificatif) ===================== */
+let exQ=20,exT=60,etT=60,exSet=[],exIdx=0,exAns=[],exTimer=null,exTimeLeft=0,exCert=false;
+function setExQ(n,el){exQ=n;document.querySelectorAll('.exq').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+function setExT(s,el){exT=s;document.querySelectorAll('.ext').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+function setEtT(s,el){etT=s;document.querySelectorAll('.ett').forEach(b=>b.classList.remove('active'));el.classList.add('active');}
+function ids(){return exCert?
+  {box:'etBox',prog:'etProgress',bar:'etBar',th:'etTheme',txt:'etText',ch:'etChoices',next:'etNext',timer:'etTimer'}:
+  {box:'examBox',prog:'exProgress',bar:'exBar',th:'exTheme',txt:'exText',ch:'exChoices',next:'exNext',timer:'exTimer'};}
+function startExam(cert){
+  exCert=cert;
+  const total=cert?Math.min(60,QUESTIONS.length):exQ;
+  exSet=shuffle(QUESTIONS).slice(0,Math.min(total,QUESTIONS.length));
+  exIdx=0;exAns=[];
+  if(cert){document.getElementById('etIntro').style.display='none';document.getElementById('etResult').style.display='none';document.getElementById('etBox').style.display='block';}
+  else{document.getElementById('examIntro').style.display='none';document.getElementById('examResult').style.display='none';document.getElementById('examBox').style.display='block';}
+  renderEx();
+}
+function renderEx(){
+  const id=ids(),q=exSet[exIdx];
+  document.getElementById(id.prog).textContent=`${exIdx+1} / ${exSet.length}`;
+  document.getElementById(id.bar).style.width=`${(exIdx/exSet.length)*100}%`;
+  document.getElementById(id.th).textContent=THEMES[q.th].title;
+  document.getElementById(id.txt).textContent=q.q;
+  const ch=document.getElementById(id.ch);ch.innerHTML='';
+  q.c.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;
+    b.onclick=()=>{ch.querySelectorAll('button').forEach(x=>x.style.borderColor='');b.style.borderColor='var(--orange)';exAns[exIdx]=i;};
+    ch.appendChild(b);});
+  document.getElementById(id.next).textContent=(exIdx===exSet.length-1)?'Terminer ✓':'Suivante →';
+  startTimer();
+}
+function startTimer(){
+  clearInterval(exTimer);const id=ids();const t=document.getElementById(id.timer);const lim=exCert?etT:exT;
+  if(lim===0){t.textContent='∞';t.classList.remove('warn');return;}
+  exTimeLeft=lim;t.textContent=exTimeLeft;t.classList.remove('warn');
+  exTimer=setInterval(()=>{exTimeLeft--;t.textContent=exTimeLeft;if(exTimeLeft<=10)t.classList.add('warn');
+    if(exTimeLeft<=0){clearInterval(exTimer);nextExam();}},1000);
+}
+function nextExam(){clearInterval(exTimer);if(exIdx===exSet.length-1)endExam();else{exIdx++;renderEx();}}
+function quitExam(){clearInterval(exTimer);
+  if(exCert){document.getElementById('etBox').style.display='none';document.getElementById('etIntro').style.display='block';}
+  else{document.getElementById('examBox').style.display='none';document.getElementById('examIntro').style.display='block';}}
+function backToExamIntro(){document.getElementById('examResult').style.display='none';document.getElementById('examIntro').style.display='block';}
+function backToEtIntro(){document.getElementById('etResult').style.display='none';document.getElementById('etIntro').style.display='block';}
+function endExam(){
+  clearInterval(exTimer);
+  let ok=0;exSet.forEach((q,i)=>{if(exAns[i]===q.a)ok++;});
+  const pct=Math.round(ok/exSet.length*100);const pass=pct>=70;
+  const review=exSet.map((q,i)=>{const good=exAns[i]===q.a;
+    return `<div class="explain show" style="border-left-color:${good?'var(--vert)':'var(--rouge)'}">
+      <b>${good?'✅':'❌'} Q${i+1} — ${q.q}</b><br>Bonne réponse : <b>${q.c[q.a]}</b>${good?'':` · ta réponse : ${exAns[i]!=null?q.c[exAns[i]]:'(aucune)'}`}<br>
+      <span style="color:var(--txt2)">${q.e}</span></div>`;}).join('');
+  if(exCert){
+    document.getElementById('etBox').style.display='none';
+    const r=document.getElementById('etResultPct');r.textContent=pct+'%';r.className='result-big '+(pass?'pass':'fail');
+    document.getElementById('etVerdict').textContent=pass?'✅ THÉORIE RÉUSSIE (seuil 70 %)':'❌ THÉORIE NON ACQUISE (seuil 70 %)';
+    document.getElementById('etVerdict').style.color=pass?'var(--vert)':'var(--rouge)';
+    document.getElementById('etDetail').textContent=`${ok} / ${exSet.length} bonnes réponses`;
+    document.getElementById('etReview').innerHTML=review;
+    document.getElementById('etResult').style.display='block';
+    RESULTS.theo={name:document.getElementById('etName').value||'(non renseigné)',pct,ok,total:exSet.length,date:new Date().toLocaleString('fr-FR')};
+  }else{
+    document.getElementById('examBox').style.display='none';
+    const r=document.getElementById('exResultPct');r.textContent=pct+'%';r.className='result-big '+(pass?'pass':'fail');
+    document.getElementById('exVerdict').textContent=pass?'✅ Réussi (seuil 70 %)':'❌ À retravailler (seuil 70 %)';
+    document.getElementById('exVerdict').style.color=pass?'var(--vert)':'var(--rouge)';
+    document.getElementById('exDetail').textContent=`${ok} / ${exSet.length} bonnes réponses`;
+    document.getElementById('exReview').innerHTML=review;
+    document.getElementById('examResult').style.display='block';
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ===================== GRILLE PRATIQUE ===================== */
+const EVAL=[
+  {g:1,t:"Préparation des tubes (coupe, ébavurage, emboîtement)",x:false},
+  {g:1,t:"Balayage à l'azote pendant le brasage",x:false},
+  {g:1,t:"Qualité du cordon de brasure",x:false},
+  {g:1,t:"Mise sous pression à l'azote (jamais oxygène)",x:true},
+  {g:1,t:"Recherche et localisation des fuites",x:false},
+  {g:2,t:"Tirage au vide jusqu'au niveau requis (~500 µmHg)",x:false},
+  {g:2,t:"Test de tenue du vide (casse-vide)",x:false},
+  {g:2,t:"Charge à la balance (masse correcte)",x:false},
+  {g:2,t:"Charge en phase liquide pour fluide zéotrope",x:false},
+  {g:2,t:"Relevé surchauffe / sous-refroidissement / pressions",x:false},
+  {g:3,t:"Récupération complète du fluide (aucun dégazage)",x:true},
+  {g:3,t:"Bouteille adaptée, taux de remplissage respecté",x:true},
+  {g:3,t:"Port des EPI et respect des consignes de sécurité",x:true},
+  {g:3,t:"Étiquetage de l'installation (fluide, charge, tCO₂e)",x:false},
+  {g:3,t:"Traçabilité : fiche d'intervention / registre",x:false}
+];
+let RESULTS={theo:null,prat:null};
+function buildEval(){
+  [1,2,3].forEach(g=>{const box=document.getElementById('grid'+g);box.innerHTML='';
+    EVAL.forEach((c,i)=>{if(c.g!==g)return;
+      box.insertAdjacentHTML('beforeend',`<label class="crit"><input type="checkbox" data-i="${i}" onchange="updateEval()"><span class="ctxt">${c.t} ${c.x?'<span class="elim">éliminatoire</span>':''}</span></label>`);});
+  });updateEval();
+}
+function updateEval(){
+  const boxes=document.querySelectorAll('.crit input');let checked=0,total=EVAL.length,elimFail=false;
+  boxes.forEach(b=>{const c=EVAL[b.dataset.i];if(b.checked)checked++;else if(c.x)elimFail=true;});
+  const pct=Math.round(checked/total*100);
+  document.getElementById('evalScore').textContent=`${checked} / ${total} · ${pct}%`;
+  const v=document.getElementById('evalVerdict');let verdict,pass=false;
+  if(elimFail){verdict='❌ Échec (sécurité)';}
+  else if(pct>=70){verdict=`✅ Apte — ${pct}%`;pass=true;}
+  else{verdict=`⚠️ Insuffisant — ${pct}%`;}
+  v.textContent=verdict;
+  RESULTS.prat={name:document.getElementById('candName').value||'(non renseigné)',pct,checked,total,elimFail,pass,date:new Date().toLocaleString('fr-FR')};
+}
+function resetEval(){document.querySelectorAll('.crit input').forEach(b=>b.checked=false);updateEval();}
+
+/* ===================== SYNTHÈSE ===================== */
+function renderSynth(){
+  const box=document.getElementById('synthBox');const t=RESULTS.theo,p=RESULTS.prat;
+  const name=(t&&t.name!=='(non renseigné)'?t.name:(p&&p.name)||'(candidat non renseigné)');
+  const theoPass=t&&t.pct>=70, pratPass=p&&p.pass;
+  let apt='—',col='var(--txt2)';
+  if(t&&p){if(theoPass&&pratPass){apt='✅ APTE';col='var(--vert)';}else{apt='❌ NON APTE';col='var(--rouge)';}}
+  box.innerHTML=`
+    <div class="synth-row"><span><b>Candidat</b></span><span>${name}</span></div>
+    <div class="synth-row"><span><b>Épreuve théorique</b></span><span>${t?`${t.pct}% (${t.ok}/${t.total}) — ${theoPass?'✅ réussie':'❌ échouée'} · ${t.date}`:'non passée'}</span></div>
+    <div class="synth-row"><span><b>Épreuve pratique</b></span><span>${p?`${p.pct}% — ${p.elimFail?'❌ critère sécurité manquant':(pratPass?'✅ réussie':'❌ insuffisante')}`:'non évaluée'}</span></div>
+    <div class="synth-row" style="border-bottom:none"><span style="font-size:1.2rem"><b>Décision</b></span><span style="font-size:1.4rem;font-weight:800;color:${col}">${apt}</span></div>`;
+}
+function exportCSV(){
+  const t=RESULTS.theo,p=RESULTS.prat;
+  const rows=[["Champ","Valeur"],
+    ["Candidat",(t&&t.name)||(p&&p.name)||""],
+    ["Theorie %",t?t.pct:""],["Theorie reussie",t?(t.pct>=70?"oui":"non"):""],
+    ["Pratique %",p?p.pct:""],["Pratique reussie",p?(p.pass?"oui":"non"):""],
+    ["Decision",(t&&p)?((t.pct>=70&&p.pass)?"APTE":"NON APTE"):"incomplet"],
+    ["Date",new Date().toLocaleString('fr-FR')]];
+  const csv=rows.map(r=>r.map(x=>`"${(''+x).replace(/"/g,'""')}"`).join(";")).join("\n");
+  const blob=new Blob(["﻿"+csv],{type:"text/csv;charset=utf-8"});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=`synthese_habilitation_${(t&&t.name||p&&p.name||'candidat').replace(/\s+/g,'_')}.csv`;a.click();
+}
+
+/* ===================== INIT ===================== */
+document.getElementById('bankCount').textContent=QUESTIONS.length;
+buildEval();
+// recalcule la synthèse à chaque affichage de l'onglet
+const _showPanel=showPanel;
+showPanel=function(id){_showPanel(id);if(id==='evalsynthese')renderSynth();};
+</script>
+</body>
+</html>

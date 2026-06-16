@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A1F33">
+<title>inerWeb Édu — Froid · Climatisation · Habilitation Fluide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0A1F33;--blue:#0E3A5E;--blue2:#114E78;--frost:#35D0C5;--frost2:#7BE0D8;--ice:#CDEEF2;
+    --accent:#FF6B35;--accent2:#FF8E53;--bg:#F4F8FB;--card:#FFFFFF;--text:#13283C;--muted:#5B7185;
+    --head:'Poppins',system-ui,sans-serif;--body:'Inter','Calibri',system-ui,sans-serif;}
+  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--text);background:var(--bg);overflow-x:hidden}
+  .hero{position:relative;min-height:78vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 1.2rem 6rem;color:#fff;overflow:hidden;background:linear-gradient(125deg,#08182a,#0E3A5E 38%,#114E78 62%,#1C7C94 100%);background-size:200% 200%;animation:aurora 16s ease infinite}
+  @keyframes aurora{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}
+  .hero::before{width:520px;height:520px;background:radial-gradient(circle,#35D0C5,transparent 70%);top:-160px;right:-120px}
+  .hero::after{width:460px;height:460px;background:radial-gradient(circle,#FF6B35,transparent 70%);bottom:-180px;left:-120px;opacity:.32}
+  .snow{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .snow span{position:absolute;top:-5%;color:#cfeef5;opacity:.55;animation:fall linear infinite}
+  @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+  .brand{position:relative;display:inline-flex;align-items:center;gap:.6rem;font-family:var(--head);font-weight:700;font-size:1.1rem;color:#dff3f7;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:.45rem 1rem;border-radius:40px;backdrop-filter:blur(8px)}
+  h1{position:relative;font-family:var(--head);font-weight:800;font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.05;margin:1.3rem 0 .6rem;letter-spacing:-.01em}
+  h1 .grad{background:linear-gradient(90deg,#7BE0D8,#35D0C5 45%,#FF8E53);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{position:relative;font-size:clamp(1rem,2.2vw,1.3rem);color:#cfe2ee;max-width:720px;margin:.4rem auto 0;font-weight:400}
+  .chips{position:relative;margin-top:1.6rem;display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+  .chips span{font-size:.82rem;color:#eaf6f8;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);padding:.35rem .85rem;border-radius:30px;backdrop-filter:blur(6px)}
+  .cta{position:relative;margin-top:2rem}
+  .cta a{display:inline-block;font-family:var(--head);font-weight:600;font-size:1rem;text-decoration:none;background:linear-gradient(135deg,#FF6B35,#FF8E53);color:#fff;padding:.85rem 1.8rem;border-radius:40px;box-shadow:0 10px 30px rgba(255,107,53,.35);transition:.2s}
+  .cta a:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(255,107,53,.45)}
+  .wave{position:absolute;bottom:-1px;left:0;width:100%;line-height:0}.wave svg{width:100%;height:70px;display:block}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 1.2rem}
+  .section-title{font-family:var(--head);font-weight:700;font-size:1.6rem;color:var(--ink);text-align:center;margin:2.6rem 0 .3rem}
+  .section-sub{text-align:center;color:var(--muted);margin-bottom:1.8rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.3rem;margin-bottom:2rem}
+  .tile{position:relative;background:var(--card);border:1px solid #e6eef4;border-radius:22px;padding:1.5rem;text-decoration:none;color:inherit;overflow:hidden;transition:.22s;box-shadow:0 6px 22px rgba(13,58,94,.06)}
+  .tile:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(13,58,94,.16);border-color:transparent}
+  .tile::before{content:"";position:absolute;top:0;left:0;width:100%;height:5px;background:var(--barc,linear-gradient(90deg,#35D0C5,#114E78))}
+  .tile .ic{width:62px;height:62px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin-bottom:1rem;background:var(--icbg,#e8f7f5)}
+  .tile h3{font-family:var(--head);font-weight:700;font-size:1.25rem;color:var(--ink);margin-bottom:.35rem}
+  .tile p{color:var(--muted);font-size:.97rem;line-height:1.5}
+  .tile .go{display:inline-flex;align-items:center;gap:.35rem;margin-top:1rem;font-weight:600;color:var(--accent);font-size:.95rem}
+  .tile .tag{position:absolute;top:1.2rem;right:1.2rem;font-size:.7rem;font-weight:700;color:#fff;background:var(--frost);padding:.2rem .6rem;border-radius:20px}
+  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1rem 0 2.4rem}
+  .pillar{background:linear-gradient(160deg,#0E3A5E,#114E78);color:#fff;border-radius:18px;padding:1.3rem}
+  .pillar .n{font-family:var(--head);font-weight:800;font-size:1.6rem;color:var(--frost2)}
+  .pillar .t{font-weight:600;margin:.2rem 0}.pillar .d{font-size:.9rem;color:#cfe2ee}
+  footer{background:var(--ink);color:#aebfce;text-align:center;padding:2.2rem 1.2rem;margin-top:1rem;font-size:.9rem}
+  footer b{color:#dff3f7}footer .ref{font-size:.8rem;color:#7e93a6;margin-top:.5rem}
+  @media(max-width:560px){.hero{min-height:70vh}}
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="snow" id="snow"></div>
+    <span class="brand">❄️ inerWeb Édu</span>
+    <h1>Froid, Climatisation &<br><span class="grad">Habilitation Fluide</span></h1>
+    <p class="sub">Le dispositif complet de formation, d'entraînement et d'évaluation à la manipulation des fluides frigorigènes — conforme F‑Gas III (UE) 2024/573 & arrêté du 21 novembre 2025.</p>
+    <div class="chips"><span>Formation initiale</span><span>Auto‑formation</span><span>Évaluation live & DM</span><span>Outils interactifs</span></div>
+    <div class="cta"><a href="#modules">Explorer le dispositif ↓</a></div>
+    <div class="wave"><svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C360,80 720,0 1080,30 C1260,45 1380,55 1440,40 L1440,70 L0,70 Z" fill="#F4F8FB"/></svg></div>
+  </header>
+  <main class="wrap">
+    <h2 class="section-title" id="modules">Le dispositif en un coup d'œil</h2>
+    <p class="section-sub">Chaque brique est un outil autonome — ensemble, ils forment un parcours cohérent.</p>
+    <div class="grid">
+      <a class="tile" href="cours-formation.html" style="--barc:linear-gradient(90deg,#35D0C5,#114E78);--icbg:#e3f6f3">
+        <span class="tag">Formation</span><div class="ic">🎓</div><h3>Cours — Formation initiale</h3>
+        <p>5 modules animés (technologie, thermodynamique, environnement, réglementation, sécurité) avec schémas, QCM et exercices.</p><span class="go">Ouvrir le cours →</span></a>
+      <a class="tile" href="habilitation-fluide.html" style="--barc:linear-gradient(90deg,#7BE0D8,#35D0C5);--icbg:#e9f7ee">
+        <span class="tag">Réviser</span><div class="ic">🧪</div><h3>Préparation & auto‑formation</h3>
+        <p>Cadre légal, catégories I→V, révision par thème et entraînement QCM pour préparer l'attestation en autonomie.</p><span class="go">S'entraîner →</span></a>
+      <a class="tile" href="https://frigorx.github.io/inerweb-frigolo/outils/frigolo-mollier.html" target="_blank" rel="noopener" style="--barc:linear-gradient(90deg,#114E78,#1C7C94);--icbg:#e4eef7">
+        <span class="tag">Outil</span><div class="ic">❄️</div><h3>FRIGOLO Mollier</h3>
+        <p>Diagramme log(p)‑h interactif (NIST/CoolProp) : points du cycle, surchauffe, sous‑refroidissement, COP.</p><span class="go">Lancer l'outil ↗</span></a>
+      <a class="tile" href="https://frigorx.github.io/fgas-eval-mfer/prof.html" target="_blank" rel="noopener" style="--barc:linear-gradient(90deg,#FF6B35,#FF8E53);--icbg:#fdeee6">
+        <span class="tag">Évaluation</span><div class="ic">📊</div><h3>Évaluation F‑Gas — Mode live</h3>
+        <p>Présentiel : slides au vidéoprojecteur, téléphones élèves synchronisés, remédiation et export des notes.</p><span class="go">Mode live (prof) ↗</span></a>
+      <a class="tile" href="https://frigorx.github.io/fgas-eval-mfer/dm.html" target="_blank" rel="noopener" style="--barc:linear-gradient(90deg,#FF8E53,#FF6B35);--icbg:#fdeee6">
+        <span class="tag">Évaluation</span><div class="ic">🏠</div><h3>Évaluation F‑Gas — DM / Examen blanc</h3>
+        <p>À la maison ou en salle : 20/40 questions, comptes élèves, tableau de bord prof, examen blanc chronométré.</p><span class="go">Mode DM (élève) ↗</span></a>
+      <a class="tile" href="https://frigorx.github.io/inerweb-fgaz/" target="_blank" rel="noopener" style="--barc:linear-gradient(90deg,#35D0C5,#7BE0D8);--icbg:#e3f6f3">
+        <span class="tag">Réviser</span><div class="ic">🎯</div><h3>Mission F‑GAZ</h3>
+        <p>Quiz, fiches mémo, calculs tCO₂e, glossaire et cartes flash : la révision express sur la réglementation F‑Gas.</p><span class="go">Réviser ↗</span></a>
+      <a class="tile" href="dossier-cadrage-audit.html" style="--barc:linear-gradient(90deg,#0E3A5E,#35D0C5);--icbg:#e4eef7">
+        <span class="tag">Dossier</span><div class="ic">📋</div><h3>Dossier de cadrage & audit</h3>
+        <p>Architecture, conformité réglementaire, état d'avancement et checklist d'audit — le document de pilotage.</p><span class="go">Ouvrir le dossier →</span></a>
+    </div>
+    <h2 class="section-title">Trois temps, un seul système</h2>
+    <p class="section-sub">La logique du dispositif.</p>
+    <div class="pillars">
+      <div class="pillar"><div class="n">01</div><div class="t">Apprendre</div><div class="d">Cours animés + auto‑formation : l'élève comprend et mémorise à son rythme.</div></div>
+      <div class="pillar"><div class="n">02</div><div class="t">S'exercer</div><div class="d">Outils interactifs (FRIGOLO), QCM et exercices : le geste et le raisonnement se construisent.</div></div>
+      <div class="pillar"><div class="n">03</div><div class="t">Évaluer</div><div class="d">Évaluation live & DM, examen blanc : on vérifie les acquis, on remonte les notes.</div></div>
+    </div>
+  </main>
+  <footer><b>inerWeb Édu</b> — Froid · Climatisation · Énergies · F. Henninot<br>
+    <span class="ref">Conforme F‑Gas III — Règlement (UE) 2024/573 · Arrêté du 21 novembre 2025</span></footer>
+<script>
+  const snow=document.getElementById('snow');const flakes=['❄','❅','❆','•'];
+  for(let i=0;i<26;i++){const s=document.createElement('span');s.textContent=flakes[i%flakes.length];
+    s.style.left=Math.random()*100+'%';s.style.fontSize=(8+Math.random()*16)+'px';
+    s.style.animationDuration=(6+Math.random()*10)+'s';s.style.animationDelay=(-Math.random()*12)+'s';
+    s.style.opacity=(0.25+Math.random()*0.45).toFixed(2);snow.appendChild(s);}
+</script>
+</body>
+</html>

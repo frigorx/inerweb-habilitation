@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier de cadrage — Dispositif Habilitation Fluide | inerWeb Édu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0A1F33;--blue:#0E3A5E;--blue2:#114E78;--frost:#35D0C5;--frost2:#7BE0D8;
+    --accent:#FF6B35;--bg:#F4F8FB;--card:#fff;--text:#13283C;--muted:#5B7185;--border:#e3edf4;
+    --head:'Poppins',system-ui,sans-serif;--body:'Inter','Calibri',system-ui,sans-serif;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--body);color:var(--text);background:var(--bg);line-height:1.6}
+  .page{max-width:920px;margin:0 auto;padding:0 1.3rem 3rem}
+  header.cover{background:linear-gradient(125deg,#08182a,#0E3A5E 45%,#1C7C94);color:#fff;border-radius:0 0 24px 24px;padding:2.6rem 1.6rem;margin-bottom:1.6rem}
+  .badge{display:inline-block;font-family:var(--head);font-weight:700;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.35rem .9rem;border-radius:30px;font-size:.85rem;color:#dff3f7}
+  header.cover h1{font-family:var(--head);font-weight:800;font-size:2.1rem;margin:.8rem 0 .3rem;line-height:1.1}
+  header.cover p{color:#cfe2ee;max-width:680px}
+  header.cover .meta{margin-top:1rem;font-size:.85rem;color:#9fc3d6}
+  h2{font-family:var(--head);font-weight:700;color:var(--ink);font-size:1.4rem;margin:2rem 0 .6rem;padding-left:.7rem;border-left:5px solid var(--frost)}
+  h3{font-family:var(--head);font-weight:600;color:var(--blue2);font-size:1.1rem;margin:1.1rem 0 .3rem}
+  p{margin:.5rem 0}ul{margin:.4rem 0 .6rem 1.3rem}li{margin:.3rem 0}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem 1.3rem;margin:.8rem 0;box-shadow:0 4px 16px rgba(13,58,94,.05)}
+  table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.95rem}
+  th,td{border:1px solid var(--border);padding:.55rem .65rem;text-align:left;vertical-align:top}
+  thead th{background:var(--blue);color:#fff;font-family:var(--head);font-weight:600}
+  tbody tr:nth-child(even){background:#f5f9fc}
+  .pill{display:inline-block;font-size:.78rem;font-weight:700;padding:.15rem .6rem;border-radius:20px;color:#fff}
+  .ok{background:#27ae60}.wip{background:var(--accent)}.todo{background:var(--muted)}
+  .note{background:#eaf3fb;border-left:5px solid var(--blue2);border-radius:10px;padding:.7rem 1rem;margin:.6rem 0}
+  .warn{background:#fff6e8;border-left:5px solid var(--accent);border-radius:10px;padding:.7rem 1rem;margin:.6rem 0}
+  .check{list-style:none;margin-left:0}
+  .check li{padding:.4rem 0 .4rem 2rem;position:relative;border-bottom:1px solid var(--border)}
+  .check li::before{content:"☐";position:absolute;left:.3rem;color:var(--blue2);font-size:1.1rem}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:2.5rem}
+  @media print{header.cover{border-radius:0}.card{box-shadow:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cover">
+    <span class="badge">❄️ inerWeb Édu — Document de travail</span>
+    <h1>Dispositif Habilitation Fluide F‑Gas III<br>Note de cadrage & points d'audit</h1>
+    <p>Présentation du dispositif de formation et d'évaluation à la manipulation des fluides frigorigènes, en vue de la constitution d'un dossier d'organisme évaluateur.</p>
+    <div class="meta">Auteur : F. Henninot · LP Jacques Raynaud · Charte inerWeb Édu · Conforme F‑Gas III (UE) 2024/573 & arrêté du 21 nov. 2025</div>
+  </header>
+
+  <h2>1. Objectif</h2>
+  <div class="card">
+    <p>Constituer un <b>système pédagogique et d'évaluation complet et cohérent</b> autour de l'habilitation à la manipulation des fluides frigorigènes (attestation d'aptitude), dans la perspective de devenir <b>organisme évaluateur</b> certifié.</p>
+    <p>Le principe : présenter <b>notre propre système</b>, de la formation initiale à l'évaluation certificative — ce que requiert précisément le cahier des charges d'un centre.</p>
+    <div class="note"><b>Distinction clé :</b> les supports présentés sont des outils de <b>formation, d'entraînement et d'auto‑évaluation</b>. La délivrance de l'attestation relève de l'évaluation officielle (théorique + pratique) menée par l'organisme évaluateur certifié, selon le référentiel en vigueur.</div>
+  </div>
+
+  <h2>2. Architecture du dispositif</h2>
+  <div class="card">
+    <p>Un <b>portail</b> unique fédère des briques autonomes (chacune utilisable seule), reliées par une charte commune.</p>
+    <table>
+      <thead><tr><th>Brique</th><th>Rôle</th><th>Public</th><th>État</th></tr></thead>
+      <tbody>
+        <tr><td><b>Portail</b></td><td>Point d'entrée, vue d'ensemble du parcours</td><td>Tous</td><td><span class="pill ok">Fait</span></td></tr>
+        <tr><td><b>Cours — Formation initiale</b></td><td>Modules animés (techno, thermo, mesures…), schémas normalisés, QCM, exercices</td><td>Stagiaire / formateur</td><td><span class="pill wip">Modules 1‑2</span></td></tr>
+        <tr><td><b>Préparation / auto‑formation</b></td><td>Cadre légal, catégories, révision par thème, entraînement QCM</td><td>Élève / stagiaire</td><td><span class="pill ok">Fait</span></td></tr>
+        <tr><td><b>FRIGOLO Mollier</b></td><td>Diagramme log(p)‑h interactif (NIST/CoolProp), surchauffe/SC, COP</td><td>Tous</td><td><span class="pill ok">Existant</span></td></tr>
+        <tr><td><b>Évaluation F‑Gas (live)</b></td><td>Cours interactif présentiel, téléphones synchronisés, export notes</td><td>Formateur</td><td><span class="pill ok">Existant</span></td></tr>
+        <tr><td><b>Évaluation F‑Gas (DM / examen blanc)</b></td><td>20/40 questions, comptes élèves, tableau de bord, sécurité AES/HMAC</td><td>Élève / prof</td><td><span class="pill ok">Existant</span></td></tr>
+        <tr><td><b>Mission F‑GAZ</b></td><td>Quiz, fiches mémo, calculs tCO₂e, glossaire, flash</td><td>Élève</td><td><span class="pill ok">Existant</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note">Les évaluations s'appuient sur le système existant <b>fgas‑eval‑mfer</b> (live + DM) — pas de doublon : le dispositif ne réinvente pas l'évaluation, il l'intègre.</div>
+  </div>
+
+  <h2>3. Conformité réglementaire</h2>
+  <div class="card">
+    <h3>Textes de référence</h3>
+    <ul>
+      <li><b>Règlement (UE) 2024/573</b> (F‑Gas III) — applicable depuis le 11 mars 2024.</li>
+      <li><b>Arrêté du 21 novembre 2025</b> — délivrance des attestations d'aptitude.</li>
+      <li><b>Code de l'environnement</b>, art. R. 543‑75 à R. 543‑123.</li>
+    </ul>
+    <h3>Obligations clés intégrées aux contenus</h3>
+    <table>
+      <thead><tr><th>Obligation</th><th>Règle</th><th>Réf.</th></tr></thead>
+      <tbody>
+        <tr><td>Réparation d'une fuite</td><td>Sans retard injustifié</td><td>Art. 5</td></tr>
+        <tr><td>Re‑contrôle après réparation</td><td>24 h à 1 mois</td><td>Art. 5</td></tr>
+        <tr><td>Contrôle d'étanchéité</td><td>≥5 t : 12 mois · ≥50 t : 6 mois · ≥500 t : 3 mois (×2 si détection)</td><td>Art. 4</td></tr>
+        <tr><td>Registre</td><td>Conservation 5 ans</td><td>Art. 7</td></tr>
+        <tr><td>Attestation d'aptitude</td><td>Validité 7 ans ; remise à niveau de l'ancien régime avant le 12/03/2029</td><td>Arr. 21/11/2025</td></tr>
+      </tbody>
+    </table>
+    <div class="warn"><b>À confirmer lors de l'audit :</b> le format exact de l'évaluation catégorie I (nombre de questions, durée, seuil de réussite, grille pratique) doit être calé sur le <b>référentiel officiel en vigueur</b>. Hypothèse de travail retenue : QCM 60 questions, seuil 70 % (≈14/20), réussite des deux épreuves.</div>
+  </div>
+
+  <h2>4. Périmètre pédagogique (formation initiale)</h2>
+  <div class="card">
+    <table>
+      <thead><tr><th>Module</th><th>Contenu</th><th>État</th></tr></thead>
+      <tbody>
+        <tr><td>1 — Technologie</td><td>Circuit, compresseur, condenseur, détendeur, évaporateur, organes annexes, instruments, raccordements, poste azote/DESP</td><td><span class="pill ok">Fait</span></td></tr>
+        <tr><td>2 — Thermodynamique & mesures</td><td>Chaleur, relation P‑T, diagramme p‑h, surchauffe, sous‑refroidissement, calculs, diagnostic</td><td><span class="pill ok">Fait</span></td></tr>
+        <tr><td>3 — Effet de serre & environnement</td><td>Couche d'ozone, PRP, tCO₂e, phase‑down, fluides naturels/HFO</td><td><span class="pill todo">À faire</span></td></tr>
+        <tr><td>4 — Réglementation détaillée</td><td>F‑Gas III, attestations, contrôles, récupération, traçabilité</td><td><span class="pill todo">À faire</span></td></tr>
+        <tr><td>5 — Pratique & sécurité</td><td>Procédures, EPI, A2L/A3, brasage, vide, charge, récupération</td><td><span class="pill todo">À faire</span></td></tr>
+      </tbody>
+    </table>
+    <p>Durée indicative : ~3 h par module en présentiel → ~12 h de théorie + pratique sur plateau technique.</p>
+  </div>
+
+  <h2>5. État d'avancement (honnête)</h2>
+  <div class="card">
+    <p><span class="pill ok">Fait</span> Portail, charte « Givre », préparation/auto‑formation, cours modules 1‑2 (web animé + PowerPoint), intégration FRIGOLO, articulation avec fgas‑eval‑mfer.</p>
+    <p><span class="pill wip">En cours</span> Propagation de la charte à toutes les briques ; banque de questions à étoffer (objectif 60+).</p>
+    <p><span class="pill todo">À faire</span> Modules 3‑4‑5 ; validation du contenu par un second formateur ; calage du format d'évaluation sur le référentiel officiel ; volet « dossier de certification » (équipements, indépendance formateur/évaluateur, organisme certificateur).</p>
+  </div>
+
+  <h2>6. Points à auditer</h2>
+  <div class="card">
+    <ul class="check">
+      <li><b>Exactitude technique</b> des contenus modules 1‑2 (vocabulaire, valeurs, schémas normalisés).</li>
+      <li><b>Conformité réglementaire</b> : seuils, délais, catégories, validité 7 ans — cohérence avec les arrêtés.</li>
+      <li><b>Format d'évaluation</b> catégorie I : confirmer nombre de questions / durée / seuil / grille pratique officiels.</li>
+      <li><b>Cohérence pédagogique</b> : progression, objectifs, niveau (formation initiale vs recyclage).</li>
+      <li><b>Accessibilité</b> : lisibilité projection, adaptations DYS/TDAH.</li>
+      <li><b>Cahier des charges centre</b> : attestation de capacité, évaluateurs habilités, indépendance formateur/évaluateur, équipements pratiques, dossier organisme certificateur (COFRAC).</li>
+      <li><b>Complétude</b> : modules 3‑5, banque de questions, procédures pratiques.</li>
+    </ul>
+  </div>
+
+  <h2>7. Rôle proposé (co‑formateur)</h2>
+  <div class="card">
+    <p>Accompagnement à la construction du dossier d'organisme évaluateur et à la production des contenus : <b>audit de rigueur</b> (technique + réglementaire + pédagogique), co‑rédaction des modules 3‑5, validation croisée des évaluations, et — point réglementaire — garantie de l'<b>indépendance formateur ↔ évaluateur</b> exigée pour la certification.</p>
+  </div>
+
+  <footer>inerWeb Édu — Dispositif Habilitation Fluide · Document de travail interne · F. Henninot</footer>
+</div>
+</body>
+</html>

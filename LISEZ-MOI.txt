@@ -1,0 +1,50 @@
+==========================================================
+  inerWeb Édu — Dispositif Habilitation Fluide F-Gas III
+  Dossier de démonstration · F. Henninot
+==========================================================
+
+DÉMARRAGE
+---------
+Double-cliquez sur  index.html  → c'est le PORTAIL, point d'entrée unique.
+Tout part de là, sans jonglage.
+
+(Pour le meilleur rendu : ouvrir dans Chrome ou Edge.)
+
+
+CONTENU DU DOSSIER
+------------------
+index.html ......................... Portail (hub) — charte « Givre »
+cours-formation.html ............... Cours animé — 5 modules (formation initiale)
+habilitation-fluide.html ........... Préparation & auto-formation (cadre légal, QCM)
+dossier-cadrage-audit.html ......... Dossier de cadrage + checklist d'audit
+cours-formation-modules1-2.pptx .... Version PowerPoint (modules 1-2)
+assets/ ............................ Schémas et bibliothèque de symboles
+LISEZ-MOI.txt ...................... Ce fichier
+
+
+LE COURS (cours-formation.html) — 5 MODULES
+-------------------------------------------
+1. Technologie (circuit, composants, instruments, poste azote/DESP)
+2. Thermodynamique & mesures (P-T, p-h, surchauffe, sous-refroidissement)
+3. Effet de serre & environnement (ODP, PRP, tCO2e, phase-down)
+4. Réglementation F-Gas III (attestation, contrôles, traçabilité)
+5. Sécurité & manipulation (EPI, A2L/A3, DESP, incidents)
+→ Navigation : flèches clavier ou glisser ; touche P pour imprimer.
+
+
+OUTILS EN LIGNE (nécessitent une connexion Internet)
+----------------------------------------------------
+- FRIGOLO Mollier (diagramme log p-h) : intégré dans le cours + tuile portail
+- Évaluation F-Gas (live + DM / examen blanc) : système fgas-eval-mfer
+- Mission F-GAZ (révision) : version en ligne
+
+
+NOTES
+-----
+- Les polices (Poppins/Inter) et les outils en ligne se chargent via Internet ;
+  hors ligne, le cours reste lisible (polices système) mais FRIGOLO et
+  l'évaluation ne s'affichent qu'en ligne.
+- Conforme F-Gas III : Règlement (UE) 2024/573 + arrêté du 21 novembre 2025.
+- Document de travail interne — contenu à valider avant usage officiel.
+
+==========================================================

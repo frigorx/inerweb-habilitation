@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A1F33">
+<title>Cours Habilitation Fluide — Formation initiale | inerWeb Édu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0E3A5E;--navy2:#114E78;--turq:#35D0C5;--orange:#FF6B35;--orange2:#FF8E53;
+    --vert:#27ae60;--vert2:#e8f8ef;--rouge:#c0392b;--rouge2:#fde8e8;--jaune:#f0a106;--jaune2:#fff6e5;
+    --bg:#F4F8FB;--card:#fff;--border:#e3edf4;--txt:#13283C;--txt2:#5B7185;--radius:16px;--shadow:0 6px 22px rgba(13,58,94,.10)}
+  *{margin:0;padding:0;box-sizing:border-box}
+  h1,h2,h3,.kicker,header.top .logo,.title-slide .big{font-family:'Poppins','Inter',system-ui,sans-serif}
+  body{font-family:'Inter','Calibri','Segoe UI',system-ui,sans-serif;font-size:19px;background:linear-gradient(180deg,var(--bg),#e7f0f7);color:var(--txt);min-height:100vh;line-height:1.6}
+  .app{max-width:1080px;margin:0 auto;padding:.6rem}
+  header.top{position:sticky;top:0;z-index:50;background:linear-gradient(120deg,#0A1F33,#0E3A5E 55%,#1C7C94);color:#fff;border-radius:0 0 14px 14px;box-shadow:var(--shadow);padding:.6rem 1rem;display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+  header.top .logo{font-weight:700;font-size:1.15rem}
+  header.top .tag{background:var(--orange);font-size:.78rem;font-weight:700;padding:.2rem .6rem;border-radius:20px}
+  header.top select{margin-left:auto;font-family:inherit;font-size:.9rem;padding:.4rem;border-radius:8px;border:none}
+  header.top .home{font-size:.82rem;color:#cfe0f0;text-decoration:none;border:1px solid #2c4a6e;padding:.35rem .7rem;border-radius:10px}
+  .stage{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);
+    min-height:62vh;padding:1.6rem 1.8rem;margin:.7rem 0;display:flex;flex-direction:column;justify-content:flex-start}
+  .slide{animation:fade .25s}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .kicker{color:var(--orange);font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-size:.8rem}
+  h1{font-size:1.9rem;color:var(--navy);margin:.3rem 0}
+  h2{font-size:1.5rem;color:var(--navy);margin:.2rem 0 .6rem;display:flex;gap:.5rem;align-items:center}
+  h3{font-size:1.15rem;color:var(--navy2);margin:.8rem 0 .3rem}
+  p{margin:.5rem 0}ul{margin:.4rem 0 .4rem 1.3rem}li{margin:.32rem 0}
+  .lead{font-size:1.15rem;color:var(--txt2)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:760px){.two{grid-template-columns:1fr}}
+  .box{border-radius:12px;padding:.7rem 1rem;margin:.5rem 0}
+  .info{background:#eaf3fb;border-left:5px solid var(--navy2)}
+  .ok{background:var(--vert2);border-left:5px solid var(--vert)}
+  .warn{background:var(--jaune2);border-left:5px solid var(--jaune)}
+  .key{background:#fff3e6;border-left:5px solid var(--orange);font-weight:600}
+  table{border-collapse:collapse;width:100%;margin:.6rem 0;font-size:.96rem}
+  th,td{border:1px solid var(--border);padding:.5rem .6rem;text-align:left;vertical-align:top}
+  thead th{background:var(--navy);color:#fff}tbody tr:nth-child(even){background:#f5f8fc}
+  .title-slide{text-align:center;justify-content:center;flex:1;display:flex;flex-direction:column}
+  .title-slide .big{font-size:2.4rem;color:var(--navy);font-weight:800;margin:.4rem 0}
+  .title-slide .em{font-size:3.4rem}
+  .chips span{display:inline-block;background:#eef2f6;border-radius:20px;padding:.3rem .8rem;margin:.2rem;font-size:.9rem;color:var(--txt2)}
+  svg{max-width:100%;height:auto}
+  .choices button{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--border);border-radius:12px;padding:.8rem 1rem;margin:.45rem 0;font-size:1.05rem;cursor:pointer;min-height:48px}
+  .choices button:hover{border-color:var(--orange)}
+  .choices button.correct{background:var(--vert2);border-color:var(--vert);font-weight:700}
+  .choices button.wrong{background:var(--rouge2);border-color:var(--rouge)}
+  .reveal{display:none;margin-top:.6rem}.reveal.show{display:block}
+  .btn{background:var(--orange);color:#fff;border:none;border-radius:12px;padding:.7rem 1.2rem;font-size:1rem;font-weight:700;cursor:pointer;min-height:48px}
+  .btn:hover{background:var(--orange2)}.btn.ghost{background:#fff;color:var(--navy);border:2px solid var(--border)}
+  .navbar{display:flex;align-items:center;gap:.6rem;justify-content:space-between;margin:.4rem 0 1rem}
+  .navbar .count{font-weight:700;color:var(--navy)}
+  .progress{height:7px;background:var(--border);border-radius:10px;overflow:hidden;margin:.2rem 0 .6rem}
+  .progress>div{height:100%;background:var(--orange);width:0;transition:width .3s}
+  .dotmod{font-size:.82rem;color:var(--txt2);text-align:center;margin-bottom:.3rem}
+  kbd{background:#eef2f6;border:1px solid #d7dde6;border-radius:5px;padding:0 .35rem;font-size:.82rem}
+  @media print{header.top,.navbar,.btn{display:none!important}.stage{min-height:auto;page-break-after:always}.reveal{display:block!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <span class="logo">❄️ inerWeb Édu</span>
+    <span class="tag">Cours — Formation initiale</span>
+    <select id="jump" onchange="goSlide(+this.value)"></select>
+    <a class="home" href="habilitation-fluide.html">🎓 Module habilitation</a>
+  </header>
+
+  <div class="dotmod" id="modLabel"></div>
+  <div class="progress"><div id="bar"></div></div>
+  <div class="navbar">
+    <button class="btn ghost" onclick="prev()">← Précédent</button>
+    <span class="count" id="count">1 / 1</span>
+    <button class="btn" onclick="next()">Suivant →</button>
+  </div>
+
+  <div class="stage" id="stage"></div>
+
+  <div class="navbar">
+    <button class="btn ghost" onclick="prev()">← Précédent</button>
+    <span style="color:var(--txt2);font-size:.85rem">Navigation : flèches ⌨️ ou glisser 👆 · <kbd>P</kbd> imprimer</span>
+    <button class="btn" onclick="next()">Suivant →</button>
+  </div>
+</div>
+
+<script>
+/* ============ SVG SCHÉMAS ============ */
+const SVG_CIRCUIT=`<svg viewBox="0 0 920 590" xmlns="http://www.w3.org/2000/svg" font-family="Calibri,Arial,sans-serif" style="max-width:780px">
+  <style>.flow{animation:flowdash 1.1s linear infinite}@keyframes flowdash{to{stroke-dashoffset:-56}}</style>
+  <rect x="0" y="0" width="920" height="590" fill="#ffffff"/>
+  <line x1="60" y1="293" x2="860" y2="293" stroke="#d7dde6" stroke-width="2" stroke-dasharray="10 8"/>
+  <text x="70" y="38" font-size="23" font-weight="bold" fill="#c0392b">HAUTE PRESSION (HP)</text>
+  <text x="70" y="572" font-size="23" font-weight="bold" fill="#2aafaf">BASSE PRESSION (BP)</text>
+  <polyline points="820,235 820,95 560,95" fill="none" stroke="#c0392b" stroke-width="5" stroke-dasharray="16 12" class="flow"/>
+  <polyline points="360,95 140,95 140,250" fill="none" stroke="#c0392b" stroke-width="5" stroke-dasharray="16 12" class="flow"/>
+  <polyline points="140,330 140,485 360,485" fill="none" stroke="#2aafaf" stroke-width="5" stroke-dasharray="16 12" class="flow"/>
+  <polyline points="560,485 820,485 820,345" fill="none" stroke="#2aafaf" stroke-width="5" stroke-dasharray="16 12" class="flow"/>
+  <polygon points="700,86 700,104 684,95" fill="#c0392b"/>
+  <polygon points="250,86 250,104 234,95" fill="#c0392b"/>
+  <polygon points="131,175 149,175 140,191" fill="#c0392b"/>
+  <polygon points="131,405 149,405 140,421" fill="#2aafaf"/>
+  <polygon points="250,476 250,494 266,485" fill="#2aafaf"/>
+  <polygon points="811,405 829,405 820,389" fill="#2aafaf"/>
+  <rect x="360" y="40" width="200" height="110" fill="#ffffff" stroke="#0f2d52" stroke-width="5"/>
+  <line x1="360" y1="40" x2="560" y2="150" stroke="#0f2d52" stroke-width="3.5"/>
+  <line x1="560" y1="40" x2="360" y2="150" stroke="#0f2d52" stroke-width="3.5"/>
+  <text x="460" y="180" text-anchor="middle" font-size="25" font-weight="bold" fill="#0f2d52">CONDENSEUR</text>
+  <text x="600" y="80" font-size="20" fill="#c0392b">→ chaleur rejetée</text>
+  <rect x="360" y="430" width="200" height="110" fill="#ffffff" stroke="#0f2d52" stroke-width="5"/>
+  <line x1="360" y1="430" x2="560" y2="540" stroke="#0f2d52" stroke-width="3.5"/>
+  <line x1="560" y1="430" x2="360" y2="540" stroke="#0f2d52" stroke-width="3.5"/>
+  <text x="460" y="420" text-anchor="middle" font-size="25" font-weight="bold" fill="#0f2d52">ÉVAPORATEUR</text>
+  <text x="600" y="500" font-size="20" fill="#2aafaf">→ chaleur absorbée (froid)</text>
+  <circle cx="820" cy="290" r="55" fill="#ffffff" stroke="#0f2d52" stroke-width="5"/>
+  <polygon points="793,313 847,313 820,260" fill="#0f2d52"/>
+  <text x="820" y="378" text-anchor="middle" font-size="25" font-weight="bold" fill="#0f2d52">COMPRESSEUR</text>
+  <polygon points="102,255 102,325 140,290" fill="#0f2d52"/>
+  <polygon points="178,255 178,325 140,290" fill="#0f2d52"/>
+  <line x1="104" y1="332" x2="178" y2="248" stroke="#0f2d52" stroke-width="4"/>
+  <polygon points="178,248 166,252 174,261" fill="#0f2d52"/>
+  <text x="140" y="378" text-anchor="middle" font-size="25" font-weight="bold" fill="#0f2d52">DÉTENDEUR</text>
+</svg>`;
+const SVG_PT=`<svg viewBox="0 0 750 450" xmlns="http://www.w3.org/2000/svg" font-family="Calibri,Arial,sans-serif" style="max-width:680px">
+  <rect width="750" height="450" fill="#ffffff"/>
+  <line x1="80" y1="390" x2="710" y2="390" stroke="#0f2d52" stroke-width="3"/>
+  <line x1="80" y1="390" x2="80" y2="40" stroke="#0f2d52" stroke-width="3"/>
+  <text x="395" y="430" text-anchor="middle" font-size="20" fill="#0f2d52">Température (°C)</text>
+  <text x="28" y="230" font-size="20" fill="#0f2d52" transform="rotate(-90 28,230)">Pression (bar)</text>
+  <path d="M110,365 C260,355 380,300 480,210 C560,140 620,90 690,60" fill="none" stroke="#e8914a" stroke-width="5"/>
+  <text x="300" y="420" font-size="18" fill="#e8914a" font-weight="bold">courbe de saturation</text>
+  <line x1="210" y1="320" x2="210" y2="390" stroke="#2aafaf" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="80" y1="320" x2="210" y2="320" stroke="#2aafaf" stroke-width="2" stroke-dasharray="6 5"/>
+  <circle cx="210" cy="320" r="7" fill="#2aafaf"/>
+  <text x="220" y="345" font-size="17" fill="#2aafaf" font-weight="bold">Évaporation (BP, T° basse)</text>
+  <line x1="560" y1="140" x2="560" y2="390" stroke="#c0392b" stroke-width="2" stroke-dasharray="6 5"/>
+  <line x1="80" y1="140" x2="560" y2="140" stroke="#c0392b" stroke-width="2" stroke-dasharray="6 5"/>
+  <circle cx="560" cy="140" r="7" fill="#c0392b"/>
+  <text x="300" y="125" font-size="17" fill="#c0392b" font-weight="bold">Condensation (HP, T° élevée)</text>
+</svg>`;
+
+const SVG_PH=`<div style="position:relative;width:100%;max-width:940px;margin:0 auto">
+  <iframe src="https://frigorx.github.io/inerweb-frigolo/outils/frigolo-mollier.html" title="FRIGOLO Mollier log(p)-h" loading="lazy" style="width:100%;height:62vh;min-height:440px;border:1px solid #ece4da;border-radius:12px;background:#fff"></iframe>
+  <p style="font-size:.85rem;color:#5a7080;margin-top:.4rem">⚙️ Outil interactif <b>FRIGOLO Mollier</b> (tables NIST / CoolProp) — place les points, trace le cycle, lis SR/SC et le COP. <a href="https://frigorx.github.io/inerweb-frigolo/outils/frigolo-mollier.html" target="_blank" rel="noopener">Ouvrir en plein écran ↗</a></p>
+</div>`;
+
+/* ============ CONTENU DES SLIDES ============ */
+const SLIDES=[
+/* ---------- TITRE GÉNÉRAL ---------- */
+{m:0,type:"title",em:"❄️",big:"Cours Habilitation Fluide",sub:"Formation initiale — supports de cours approfondis · Modules 1 & 2",chips:["Module 1 : Technologie","Module 2 : Thermodynamique & mesures","≈ 12 h de théorie","Slides · schémas · QCM · exercices"]},
+
+/* ================= MODULE 1 — TECHNOLOGIE ================= */
+{m:1,type:"title",em:"🔧",big:"Module 1 — Technologie",sub:"Les composants d'une installation frigorifique et les instruments de mesure",chips:["Compresseur","Condenseur","Détendeur","Évaporateur","Organes annexes","Instruments"]},
+
+{m:1,type:"cours",h:"1.1 — À quoi sert une installation frigorifique ?",html:`
+  <p class="lead">Produire du froid, ce n'est pas « fabriquer du froid » : c'est <b>déplacer de la chaleur</b> d'un endroit froid vers un endroit plus chaud.</p>
+  <ul>
+    <li>Le froid est <b>l'absence de chaleur</b>. On extrait la chaleur d'un local/produit et on la rejette ailleurs.</li>
+    <li>Le transfert se fait grâce à un <b>fluide frigorigène</b> qui change d'état (liquide ⇄ vapeur).</li>
+    <li>Lors de l'évaporation, le fluide <b>absorbe</b> de la chaleur (production de froid). Lors de la condensation, il <b>rejette</b> cette chaleur.</li>
+  </ul>
+  <div class="key">💡 Idée clé : le froid se produit là où le fluide s'évapore (l'évaporateur), la chaleur se rejette là où il se condense (le condenseur).</div>`},
+
+{m:1,type:"svg",h:"1.2 — Le circuit frigorifique : vue d'ensemble",svg:SVG_CIRCUIT,html:`
+  <p>Quatre organes principaux, deux niveaux de pression : <b>HP</b> (refoulement → condenseur → liquide) et <b>BP</b> (détente → évaporateur → aspiration).</p>
+  <div class="key">Mnémo « la croix du frigoriste » : <b>Compresseur → Condenseur → Détendeur → Évaporateur</b>.</div>`},
+
+{m:1,type:"cours",h:"1.3 — Le compresseur",html:`
+  <div class="two"><div>
+    <h3>Rôle</h3>
+    <ul><li>Aspirer la vapeur BP, la <b>comprimer</b> et la refouler en HP.</li>
+    <li>C'est le « cœur » qui fait circuler le fluide.</li></ul>
+    <h3>Technologies</h3>
+    <ul><li><b>Alternatif (à pistons)</b> : robuste, large gamme.</li>
+    <li><b>Scroll (spirale)</b> : silencieux, bon rendement, très répandu.</li>
+    <li><b>Rotatif</b> : petites puissances (clim, domestique).</li>
+    <li><b>À vis</b> : fortes puissances (industriel).</li></ul>
+  </div><div>
+    <h3>Montage</h3>
+    <ul><li><b>Hermétique</b> : moteur + compresseur soudés (domestique).</li>
+    <li><b>Semi-hermétique</b> : démontable (commercial/industriel).</li>
+    <li><b>Ouvert</b> : moteur séparé, entraînement par courroie.</li></ul>
+    <div class="warn">⚠️ Le compresseur n'aspire que de la <b>vapeur</b> : un retour de liquide (« coup de liquide ») le détruit. D'où l'importance de la <b>surchauffe</b>.</div>
+  </div></div>`},
+
+{m:1,type:"cours",h:"1.4 — Le condenseur",html:`
+  <p><b>Rôle :</b> évacuer la chaleur du fluide HP, qui se <b>désurchauffe puis se condense</b> (vapeur → liquide).</p>
+  <table><thead><tr><th>Type</th><th>Refroidi par</th><th>Usage</th></tr></thead><tbody>
+    <tr><td>À air</td><td>Ventilation d'air</td><td>Le plus courant (clim, froid commercial)</td></tr>
+    <tr><td>À eau</td><td>Eau (tour, réseau)</td><td>Industriel, fortes puissances</td></tr>
+    <tr><td>Évaporatif</td><td>Eau + air (évaporation)</td><td>Grosses installations</td></tr>
+  </tbody></table>
+  <div class="info">En sortie de condenseur, le liquide est légèrement plus froid que la T° de condensation : c'est le <b>sous-refroidissement</b> (garantit du liquide pur au détendeur).</div>`},
+
+{m:1,type:"cours",h:"1.5 — Le détendeur",html:`
+  <div class="two"><div>
+    <h3>Rôle</h3>
+    <ul><li><b>Abaisser la pression</b> (HP → BP) du liquide.</li>
+    <li><b>Doser</b> le débit de fluide vers l'évaporateur.</li></ul>
+    <h3>Technologies</h3>
+    <ul><li><b>Capillaire</b> : tube fin, simple, débit fixe (domestique).</li>
+    <li><b>Thermostatique (détendeur TD)</b> : régule selon la <b>surchauffe</b> via un bulbe.</li>
+    <li><b>Électronique</b> : régulation précise par sonde + moteur pas-à-pas.</li>
+    <li><b>À pression constante</b> : maintient une BP fixe.</li></ul>
+  </div><div>
+    <div class="key">Le détendeur thermostatique ajuste le débit pour maintenir une <b>surchauffe constante</b> à l'évaporateur : ni liquide au compresseur, ni évaporateur sous-alimenté.</div>
+    <div class="warn">⚠️ Détendeur trop ouvert → surchauffe faible → risque de liquide. Trop fermé → surchauffe élevée → évaporateur mal exploité.</div>
+  </div></div>`},
+
+{m:1,type:"cours",h:"1.6 — L'évaporateur",html:`
+  <p><b>Rôle :</b> c'est là que se produit le froid. Le fluide BP <b>s'évapore en absorbant la chaleur</b> du local/produit.</p>
+  <ul>
+    <li><b>À détente sèche</b> : tout le fluide est vaporisé + surchauffé en sortie (le plus courant).</li>
+    <li><b>Noyé</b> : l'évaporateur est rempli de liquide (industriel, fort rendement).</li>
+    <li>À air (batterie ailetée + ventilateur) ou à eau (refroidisseur).</li>
+  </ul>
+  <div class="info">La <b>surchauffe</b> se mesure à la sortie de l'évaporateur : c'est l'écart entre la température réelle de la vapeur et la température d'évaporation saturée.</div>`},
+
+{m:1,type:"cours",h:"1.7 — Les organes annexes",html:`
+  <div class="two"><div>
+    <ul>
+    <li><b>Filtre déshydrateur</b> : retient humidité et impuretés (protège le détendeur).</li>
+    <li><b>Voyant liquide</b> : vérifie le plein de liquide + indicateur d'<b>humidité</b> (témoin coloré).</li>
+    <li><b>Bouteille de liquide</b> : réserve de fluide, stabilise l'alimentation.</li>
+    <li><b>Séparateur d'huile</b> : renvoie l'huile au compresseur.</li>
+    </ul>
+  </div><div>
+    <ul>
+    <li><b>Bouteille anti-coup de liquide</b> (à l'aspiration) : protège le compresseur.</li>
+    <li><b>Pressostats HP/BP</b> : sécurités (coupent si pression anormale).</li>
+    <li><b>Électrovanne</b> : ouvre/ferme le circuit (régulation, pump-down).</li>
+    <li><b>Vanne 4 voies</b> : inverse le cycle d'une PAC réversible (chaud/froid).</li>
+    </ul>
+  </div></div>
+  <div class="key">Bulles dans le voyant = manque de charge ou manque de sous-refroidissement. Témoin humidité « rose/jaune » = présence d'eau → changer le déshydrateur.</div>`},
+
+{m:1,type:"cours",h:"1.8 — Les instruments de mesure",html:`
+  <table><thead><tr><th>Instrument</th><th>Mesure</th><th>À quoi ça sert</th></tr></thead><tbody>
+    <tr><td><b>Manifold</b> (2 manos HP/BP)</td><td>Pressions HP et BP</td><td>Diagnostic, charge, relevés P→T saturée</td></tr>
+    <tr><td><b>Thermomètre / sonde de contact</b></td><td>Températures tubes</td><td>Calcul surchauffe & sous-refroidissement</td></tr>
+    <tr><td><b>Pince ampèremétrique</b></td><td>Intensité (A)</td><td>Contrôle moteur compresseur</td></tr>
+    <tr><td><b>Balance électronique</b></td><td>Masse de fluide</td><td>Charge précise (tCO₂e)</td></tr>
+    <tr><td><b>Pompe à vide + vacuomètre</b></td><td>Vide (µmHg)</td><td>Déshydratation, contrôle tirage au vide</td></tr>
+    <tr><td><b>Détecteur de fuite</b></td><td>Présence de fluide</td><td>Contrôle d'étanchéité</td></tr>
+  </tbody></table>
+  <div class="info">Le manomètre HP/BP donne aussi, par lecture, la <b>température de saturation</b> correspondante (échelles fluides) : indispensable pour surchauffe et sous-refroidissement.</div>`},
+
+{m:1,type:"cours",h:"1.9 — Les raccordements & l'étanchéité",html:`
+  <ul>
+    <li><b>Brasage</b> : assemblage cuivre par capillarité, avec <b>balayage azote</b> (anti-calamine).</li>
+    <li><b>Dudgeon (flare)</b> : raccord conique évasé, démontable.</li>
+    <li><b>Sertissage</b> : raccords mécaniques (selon fluides/pressions).</li>
+  </ul>
+  <div class="warn">⚠️ Toute liaison est une fuite potentielle. Après assemblage : <b>essai d'étanchéité à l'azote</b>, jamais à l'oxygène.</div>
+  <div class="key">Une bonne installation = peu de raccords, brasage propre, essai d'étanchéité, tirage au vide soigné.</div>`},
+
+{m:1,type:"cours",h:"1.10 — Poste azote & sécurité pression (DESP)",html:`
+  <div class="two"><div>
+    <h3>Le poste azote</h3>
+    <ul>
+      <li><b>Bouteille d'azote (N₂)</b> + <b>manodétendeur azote</b> (2 manomètres : pression bouteille / pression de sortie réglable).</li>
+      <li>L'azote sert à la <b>mise sous pression</b> pour le <b>contrôle d'étanchéité</b> et au <b>balayage</b> pendant le brasage.</li>
+      <li>Azote = gaz <b>inerte et sec</b> : jamais d'oxygène (explosion avec les huiles) ni d'air humide.</li>
+    </ul>
+  </div><div>
+    <h3>Sécurité — DESP</h3>
+    <ul>
+      <li><b>DESP</b> (Directive Équipements Sous Pression, 2014/68/UE) : encadre les circuits/équipements sous pression.</li>
+      <li>Toujours passer par le <b>manodétendeur</b> : une bouteille N₂ est à ~200 bar — un branchement direct est extrêmement dangereux.</li>
+      <li>Régler la pression d'essai à la valeur prescrite ; ne jamais dépasser la <b>pression maximale admissible</b> du circuit.</li>
+      <li><b>Soupape de sécurité</b> sur le poste ; lunettes et EPI obligatoires.</li>
+    </ul>
+  </div></div>
+  <div class="warn">⚠️ Erreur classique et dangereuse : surpresser le circuit ou brancher l'azote sans détendeur. La détente brutale d'une bouteille à 200 bar peut faire éclater l'installation.</div>`},
+
+/* QCM module 1 */
+{m:1,type:"qcm",q:"Quel organe fait circuler le fluide en le faisant passer de BP à HP ?",c:["Le condenseur","Le compresseur","Le détendeur","L'évaporateur"],a:1,e:"Le compresseur aspire la vapeur BP et la refoule en HP : c'est le « cœur » du circuit."},
+{m:1,type:"qcm",q:"Le détendeur a deux rôles : abaisser la pression et…",c:["Comprimer la vapeur","Doser le débit de fluide","Rejeter la chaleur","Filtrer l'huile"],a:1,e:"Le détendeur abaisse la pression ET dose le débit vers l'évaporateur."},
+{m:1,type:"qcm",q:"Des bulles dans le voyant liquide indiquent le plus souvent :",c:["Un excès de charge","Un manque de charge / de sous-refroidissement","Trop d'huile","Une surchauffe nulle"],a:1,e:"Des bulles = liquide non plein → manque de charge ou de sous-refroidissement."},
+{m:1,type:"qcm",q:"Quel instrument permet de calculer la surchauffe ?",c:["La pince ampèremétrique","Le manifold + une sonde de température","La balance","Le détecteur de fuite"],a:1,e:"Surchauffe = T° mesurée (sonde) − T° d'évaporation saturée (lue au manomètre BP)."},
+
+/* Exercice module 1 */
+{m:1,type:"exo",h:"Exercice 1 — Identifier la fonction",html:`
+  <p>Associe chaque organe à sa fonction principale :</p>
+  <ul><li>A. Compresseur &nbsp; B. Condenseur &nbsp; C. Détendeur &nbsp; D. Évaporateur</li></ul>
+  <p>1) Absorbe la chaleur (produit le froid) · 2) Comprime la vapeur · 3) Rejette la chaleur (le fluide se liquéfie) · 4) Abaisse la pression et dose le fluide.</p>`,
+  sol:`<b>Correction :</b> A→2 · B→3 · C→4 · D→1.`},
+
+/* ================= MODULE 2 — THERMODYNAMIQUE ================= */
+{m:2,type:"title",em:"🌡️",big:"Module 2 — Thermodynamique & mesures",sub:"Comprendre, mesurer et diagnostiquer une installation",chips:["Chaleur & changements d'état","Relation P–T","Diagramme p–h","Surchauffe / sous-refroidissement","Calculs & diagnostic"]},
+
+{m:2,type:"cours",h:"2.1 — Chaleur sensible et chaleur latente",html:`
+  <div class="two"><div>
+    <h3>Chaleur sensible</h3>
+    <p>Échange de chaleur qui <b>change la température</b> sans changer l'état. (Ex. chauffer de l'eau de 20 à 80 °C.)</p>
+    <h3>Chaleur latente</h3>
+    <p>Échange de chaleur qui <b>change l'état</b> à température constante. (Ex. eau qui bout à 100 °C.)</p>
+  </div><div>
+    <div class="key">En froid, on exploite surtout la <b>chaleur latente</b> : à l'évaporateur, le fluide absorbe une grande quantité de chaleur en se vaporisant, à température constante.</div>
+  </div></div>
+  <div class="info">Changements d'état : <b>vaporisation</b> (liquide→vapeur, absorbe la chaleur) et <b>condensation</b> (vapeur→liquide, rejette la chaleur).</div>`},
+
+{m:2,type:"svg",h:"2.2 — La relation pression–température (fluide saturé)",svg:SVG_PT,html:`
+  <p>Pour un fluide <b>en saturation</b> (mélange liquide+vapeur), <b>pression et température sont liées</b> : connaître l'une donne l'autre (table ou échelle du manomètre).</p>
+  <table><thead><tr><th>Exemple R134a (indicatif)</th><th>Pression (bar abs)</th><th>T° saturation</th></tr></thead><tbody>
+    <tr><td>Évaporation</td><td>≈ 2,1 bar</td><td>≈ −10 °C</td></tr>
+    <tr><td>Évaporation</td><td>≈ 3,5 bar</td><td>≈ 5 °C</td></tr>
+    <tr><td>Condensation</td><td>≈ 10,2 bar</td><td>≈ 40 °C</td></tr>
+  </tbody></table>
+  <div class="warn">⚠️ Valeurs indicatives : chaque fluide a SA table. Toujours utiliser l'échelle du fluide réellement présent.</div>`},
+
+{m:2,type:"svg",h:"2.3 — Le diagramme enthalpique (p–h / Mollier)",svg:SVG_PH,html:`
+  <p>Le cycle frigorifique se trace sur un diagramme <b>pression–enthalpie</b>. La « cloche » est la courbe de saturation ; à l'intérieur, le fluide change d'état.</p>
+  <ul><li>1 → 2 : compression (BP→HP).</li><li>2 → 3 : condensation (rejet de chaleur).</li><li>3 → 4 : détente (HP→BP).</li><li>4 → 1 : évaporation (production de froid).</li></ul>`},
+
+{m:2,type:"cours",h:"2.4 — La surchauffe",html:`
+  <div class="two"><div>
+    <h3>Définition</h3>
+    <p><b>Surchauffe = T° vapeur à l'aspiration − T° d'évaporation saturée.</b></p>
+    <h3>Mesure</h3>
+    <ul><li>T° saturée : lue au manomètre <b>BP</b>.</li>
+    <li>T° réelle : sonde sur le tube d'aspiration.</li></ul>
+  </div><div>
+    <div class="key">Valeur usuelle : <b>5 à 8 K</b> (détente sèche). Garantit que seule de la vapeur arrive au compresseur.</div>
+    <div class="warn">Surchauffe trop faible → risque de coup de liquide. Trop forte → évaporateur sous-alimenté, perte de puissance.</div>
+  </div></div>`},
+
+{m:2,type:"cours",h:"2.5 — Le sous-refroidissement",html:`
+  <div class="two"><div>
+    <h3>Définition</h3>
+    <p><b>Sous-refroidissement = T° de condensation saturée − T° du liquide en sortie de condenseur.</b></p>
+    <h3>Mesure</h3>
+    <ul><li>T° saturée : lue au manomètre <b>HP</b>.</li>
+    <li>T° réelle : sonde sur la ligne liquide.</li></ul>
+  </div><div>
+    <div class="key">Valeur usuelle : <b>4 à 7 K</b>. Garantit du <b>liquide pur</b> (sans bulles) à l'entrée du détendeur.</div>
+    <div class="info">Sous-refroidissement faible + bulles au voyant → souvent un manque de charge.</div>
+  </div></div>`},
+
+{m:2,type:"cours",h:"2.6 — Calculs de performance",html:`
+  <ul>
+    <li><b>Puissance frigorifique</b> Q₀ : chaleur absorbée à l'évaporateur (kW).</li>
+    <li><b>COP</b> = P. calorifique / P. électrique (mode chaud).</li>
+    <li><b>EER</b> = P. frigorifique / P. électrique (mode froid).</li>
+  </ul>
+  <div class="info"><b>Exemple :</b> une PAC fournit 8 kW de chaud pour 2 kW électriques → COP = 8 / 2 = <b>4</b>. Pour 1 kWh consommé, 4 kWh de chaleur produits.</div>
+  <div class="key">Plus le COP/EER est élevé, plus l'installation est <b>efficace</b> — enjeu central du F-Gas III (efficacité énergétique).</div>`},
+
+{m:2,type:"cours",h:"2.7 — Diagnostic par les mesures",html:`
+  <table><thead><tr><th>Symptôme</th><th>Surchauffe</th><th>Sous-refroid.</th><th>Cause probable</th></tr></thead><tbody>
+    <tr><td>Manque de charge</td><td>↑ élevée</td><td>↓ faible (bulles)</td><td>Compléter / chercher fuite</td></tr>
+    <tr><td>Excès de charge</td><td>↓ faible</td><td>↑ élevé</td><td>Retirer du fluide</td></tr>
+    <tr><td>Détendeur trop fermé</td><td>↑ élevée</td><td>normal</td><td>Régler / vérifier bulbe</td></tr>
+    <tr><td>Condenseur encrassé</td><td>variable</td><td>↑ + HP haute</td><td>Nettoyer le condenseur</td></tr>
+  </tbody></table>
+  <div class="key">La lecture croisée <b>surchauffe + sous-refroidissement + HP/BP</b> est la base du diagnostic d'un frigoriste.</div>`},
+
+/* QCM module 2 */
+{m:2,type:"qcm",q:"La chaleur qui change l'état d'un corps sans changer sa température est dite :",c:["Sensible","Latente","Spécifique","Massique"],a:1,e:"La chaleur latente accompagne un changement d'état à température constante — c'est ce qu'on exploite à l'évaporateur."},
+{m:2,type:"qcm",q:"Pour un fluide en saturation, la pression permet de connaître :",c:["La masse","La température","Le PRP","La classe de sécurité"],a:1,e:"En saturation, pression et température sont liées : le manomètre donne la T° saturée."},
+{m:2,type:"qcm",q:"Surchauffe =",c:["T° condensation − T° liquide","T° aspiration − T° évaporation saturée","HP − BP","T° ambiante − T° évaporation"],a:1,e:"Surchauffe = T° réelle de la vapeur aspirée − T° d'évaporation saturée (lue au mano BP)."},
+{m:2,type:"qcm",q:"Une surchauffe élevée avec un sous-refroidissement faible et des bulles au voyant indique :",c:["Un excès de charge","Un manque de charge","Un condenseur encrassé","Trop d'huile"],a:1,e:"C'est la signature typique d'un manque de charge — compléter après recherche de fuite."},
+
+/* Exercice module 2 */
+{m:2,type:"exo",h:"Exercice 2 — Calcul de surchauffe",html:`
+  <p>Relevés sur une installation : pression BP correspondant à une <b>T° d'évaporation saturée de +2 °C</b>. La sonde sur le tube d'aspiration indique <b>+9 °C</b>.</p>
+  <p><b>Question :</b> calcule la surchauffe. Est-elle correcte (cible 5–8 K) ?</p>`,
+  sol:`<b>Correction :</b> Surchauffe = 9 − 2 = <b>7 K</b>. Valeur correcte (dans la plage 5–8 K) → fonctionnement sain, vapeur sèche au compresseur.`},
+
+{m:2,type:"exo",h:"Exercice 3 — Équivalent tCO₂e",html:`
+  <p>Une installation contient <b>6 kg de R410A</b> (PRP 2088).</p>
+  <p><b>Question :</b> calcule l'équivalent tCO₂e et indique la fréquence de contrôle d'étanchéité.</p>`,
+  sol:`<b>Correction :</b> tCO₂e = (6 × 2088) / 1000 = <b>12,53 tCO₂e</b>. ≥ 5 et &lt; 50 → <b>contrôle annuel</b> (×2 = tous les 2 ans si détection de fuite installée).`},
+
+/* ================= MODULE 3 — ENVIRONNEMENT ================= */
+{m:3,type:"title",em:"🌍",big:"Module 3 — Effet de serre & environnement",sub:"Pourquoi les fluides frigorigènes sont réglementés",chips:["Couche d'ozone","PRP / GWP","tCO₂e","Phase-down","Fluides de substitution"]},
+{m:3,type:"cours",h:"3.1 — Ozone et effet de serre : deux problèmes distincts",html:`
+  <div class="two"><div>
+   <h3>Couche d'ozone (ODP)</h3>
+   <ul><li>Les anciens fluides <b>CFC/HCFC</b> (R12, R22) détruisaient la couche d'ozone → <b>interdits</b> (protocole de Montréal).</li><li>Les HFC ne détruisent pas l'ozone (ODP ≈ 0).</li></ul>
+  </div><div>
+   <h3>Effet de serre (PRP)</h3>
+   <ul><li>Mais les <b>HFC</b> sont de puissants gaz à effet de serre (PRP élevé).</li><li>D'où la cible de la réglementation F-Gas : réduire leur impact climatique.</li></ul>
+  </div></div>
+  <div class="key">ODP = destruction de l'ozone · PRP = réchauffement climatique. Deux notions à ne pas confondre.</div>`},
+{m:3,type:"cours",h:"3.2 — Le PRP (Potentiel de Réchauffement Planétaire)",html:`
+  <p>Le <b>PRP (GWP)</b> compare l'effet de serre d'un gaz à celui du CO₂ (PRP = 1), sur 100 ans.</p>
+  <table><thead><tr><th>Fluide</th><th>PRP (AR4)</th><th>Type</th></tr></thead><tbody>
+   <tr><td>R744 (CO₂)</td><td>1</td><td>Naturel</td></tr>
+   <tr><td>R290 (propane)</td><td>3</td><td>Naturel</td></tr>
+   <tr><td>R32</td><td>675</td><td>HFC bas PRP</td></tr>
+   <tr><td>R134a</td><td>1430</td><td>HFC</td></tr>
+   <tr><td>R410A</td><td>2088</td><td>HFC mélange</td></tr>
+   <tr><td>R404A</td><td>3922</td><td>HFC mélange</td></tr>
+  </tbody></table>
+  <div class="info">F-Gas III : PRP AR4 pour les HFC ; AR6 pour les HFO et fluides non fluorés.</div>`},
+{m:3,type:"cours",h:"3.3 — L'équivalent tCO₂e",html:`
+  <p><b>tCO₂e = (Charge kg × PRP) / 1000.</b> L'unité qui mesure l'impact climatique d'une charge.</p>
+  <ul><li>Détermine la <b>fréquence des contrôles d'étanchéité</b> : ≥5 t → annuel, ≥50 t → semestriel, ≥500 t → trimestriel + détection.</li>
+  <li>Plus le PRP est élevé, plus une même masse « pèse » lourd en tCO₂e.</li></ul>
+  <div class="key">Exemple : 10 kg de R32 (PRP 675) = 6,75 tCO₂e ; 10 kg de R404A (PRP 3922) = 39,2 tCO₂e. Même masse, impact très différent.</div>`},
+{m:3,type:"cours",h:"3.4 — Phase-down & fluides de substitution",html:`
+  <p>Le <b>phase-down</b> réduit progressivement les quotas de HFC mis sur le marché (objectif zéro HFC en 2050).</p>
+  <div class="two"><div>
+   <h3>Substitution</h3>
+   <ul><li><b>HFO</b> (R1234yf, R1234ze) : PRP très bas, A2L.</li><li><b>Naturels</b> : R290, R600a (A3), R744 (CO₂), R717 (NH₃).</li><li><b>Mélanges bas PRP</b> (R454B, R32…).</li></ul>
+  </div><div>
+   <h3>Conséquences terrain</h3>
+   <ul><li>Hausse du prix des HFC à PRP élevé.</li><li>Montée des fluides inflammables (A2L/A3) → sécurité renforcée.</li><li>Récupération / régénération essentielles.</li></ul>
+  </div></div>`},
+{m:3,type:"qcm",q:"Quelle grandeur mesure l'impact sur la couche d'ozone ?",c:["Le PRP","L'ODP","La tCO₂e","Le COP"],a:1,e:"L'ODP mesure la destruction de l'ozone ; le PRP mesure l'effet de serre."},
+{m:3,type:"qcm",q:"Objectif du phase-down des HFC à horizon 2050 :",c:["−20 %","Stabilisation","Zéro HFC","Doublement"],a:2,e:"F-Gas III vise la quasi-disparition des HFC (objectif zéro) à horizon 2050."},
+{m:3,type:"exo",h:"Exercice — Comparer deux fluides",html:`<p>Deux installations de 8 kg : l'une au R134a (PRP 1430), l'autre au R32 (PRP 675). Calcule la tCO₂e de chacune.</p>`,sol:`<b>Correction :</b> R134a → (8×1430)/1000 = 11,44 tCO₂e ; R32 → (8×675)/1000 = 5,4 tCO₂e. À charge égale, le R32 a moitié moins d'impact.`},
+
+/* ================= MODULE 4 — RÉGLEMENTATION ================= */
+{m:4,type:"title",em:"⚖️",big:"Module 4 — Réglementation F-Gas III",sub:"Obligations, attestation, contrôles, traçabilité",chips:["F-Gas III","Attestation 7 ans","Contrôles","Récupération","Traçabilité"]},
+{m:4,type:"cours",h:"4.1 — F-Gas III : le cadre",html:`
+  <ul><li><b>Règlement (UE) 2024/573</b> — applicable depuis le 11 mars 2024 (remplace le 517/2014).</li>
+  <li><b>Arrêté du 21 novembre 2025</b> — attestations d'aptitude.</li>
+  <li><b>Code de l'environnement</b>, art. R.543-75 à R.543-123.</li></ul>
+  <div class="key">Objectif : réduire les émissions de gaz fluorés et accompagner la transition vers des fluides à bas PRP.</div>`},
+{m:4,type:"cours",h:"4.2 — L'attestation d'aptitude",html:`
+  <p>Obligatoire pour toute intervention sur un circuit contenant des fluides fluorés.</p>
+  <table><thead><tr><th>Cat.</th><th>Champ d'intervention</th></tr></thead><tbody>
+   <tr><td>I</td><td>Toutes interventions, toutes charges</td></tr>
+   <tr><td>II</td><td>Charge &lt; 2 kg</td></tr>
+   <tr><td>III</td><td>Récupération, &lt; 2 kg</td></tr>
+   <tr><td>IV</td><td>Contrôle d'étanchéité</td></tr>
+   <tr><td>V</td><td>Transport frigorifique</td></tr>
+  </tbody></table>
+  <div class="info">Validité <b>7 ans</b>. Attestations anciennes : remise à niveau avant le <b>12/03/2029</b>.</div>`},
+{m:4,type:"cours",h:"4.3 — Contrôles d'étanchéité & registre",html:`
+  <table><thead><tr><th>Obligation</th><th>Règle</th></tr></thead><tbody>
+   <tr><td>Réparation d'une fuite</td><td>Sans retard injustifié (art. 5)</td></tr>
+   <tr><td>Re-contrôle</td><td>24 h à 1 mois après réparation (art. 5)</td></tr>
+   <tr><td>Contrôle périodique</td><td>5 / 50 / 500 tCO₂e → 12 / 6 / 3 mois (art. 4)</td></tr>
+   <tr><td>Registre</td><td>Conservé 5 ans (art. 7)</td></tr>
+  </tbody></table>
+  <div class="key">Avec détection de fuite installée, les intervalles de contrôle sont doublés.</div>`},
+{m:4,type:"cours",h:"4.4 — Récupération & traçabilité",html:`
+  <ul><li><b>Dégazage interdit</b> : récupération obligatoire et complète.</li>
+  <li><b>Fiche d'intervention CERFA 15497*04</b> + registre des mouvements de fluide.</li>
+  <li>Réutilisation seulement après <b>recyclage</b> ou <b>régénération</b>.</li>
+  <li>Bouteille de récupération adaptée, taux de remplissage respecté.</li></ul>
+  <div class="warn">⚠️ Fluide vierge à PRP ≥ 2500 (ex. R404A) interdit en maintenance ; régénéré/recyclé toléré jusqu'au 01/01/2030.</div>`},
+{m:4,type:"qcm",q:"Durée de conservation du registre d'intervention :",c:["1 an","3 ans","5 ans","10 ans"],a:2,e:"5 ans minimum (art. 7 du règlement 2024/573)."},
+{m:4,type:"qcm",q:"Validité de la nouvelle attestation d'aptitude :",c:["À vie","5 ans","7 ans","10 ans"],a:2,e:"7 ans, avec remise à niveau périodique."},
+
+/* ================= MODULE 5 — SÉCURITÉ ================= */
+{m:5,type:"title",em:"🛡️",big:"Module 5 — Sécurité & manipulation des fluides",sub:"Travailler en sécurité : EPI, pression, inflammabilité, incidents",chips:["EPI","Pression / DESP","A2L / A3","Récupération sûre","Premiers secours"]},
+{m:5,type:"cours",h:"5.1 — Les risques du métier",html:`
+  <div class="two"><div>
+   <ul><li><b>Pression</b> : éclatement, projection (azote ~200 bar, R744 ~120 bar).</li><li><b>Froid</b> : gelures par le fluide liquide.</li><li><b>Asphyxie</b> : en local confiné (CO₂, fuite massive).</li></ul>
+  </div><div>
+   <ul><li><b>Inflammabilité</b> : A2L/A3 (R32, R290…).</li><li><b>Toxicité</b> : B2L (ammoniac R717).</li><li><b>Brûlure / électrique</b> : brasage, compresseur.</li></ul>
+  </div></div>
+  <div class="key">EPI de base : gants, lunettes/écran, vêtements et chaussures de sécurité ; ventilation et détection selon le fluide.</div>`},
+{m:5,type:"cours",h:"5.2 — Classes de sécurité & manipulation",html:`
+  <table><thead><tr><th>Classe</th><th>Risque</th><th>Précautions</th></tr></thead><tbody>
+   <tr><td>A1</td><td>Non inflammable</td><td>Asphyxie en confiné → ventiler</td></tr>
+   <tr><td>A2L</td><td>Faiblement inflammable</td><td>Charges limites, ventilation, pas d'ignition</td></tr>
+   <tr><td>A3</td><td>Très inflammable</td><td>Zone ventilée, outillage anti-étincelle, charge limitée</td></tr>
+   <tr><td>B2L</td><td>Toxique + inflammable</td><td>Détection, EPI spécifiques, rince-œil</td></tr>
+  </tbody></table>
+  <div class="warn">⚠️ R290 = A3 (pas A2L). Tout hydrocarbure est très inflammable.</div>`},
+{m:5,type:"cours",h:"5.3 — Poste azote & DESP",html:`
+  <ul><li>Mise sous pression d'essai à l'<b>azote</b> via un <b>manodétendeur</b> — jamais d'oxygène.</li>
+  <li><b>DESP</b> (Directive Équipements Sous Pression 2014/68/UE) : ne pas dépasser la pression maximale admissible du circuit.</li>
+  <li>Une bouteille N₂ à ~200 bar sans détendeur = danger grave. <b>Soupape de sécurité</b> obligatoire.</li></ul>
+  <div class="key">Régler la pression d'essai à la valeur prescrite, monter progressivement, ne jamais surpresser.</div>`},
+{m:5,type:"cours",h:"5.4 — Procédures sûres",html:`
+  <ul><li><b>Brasage</b> : balayage azote, écran anti-feu, extincteur, ventilation.</li>
+  <li><b>Tirage au vide</b> : déshydratation ; ne pas mettre le compresseur sous vide poussé sous tension.</li>
+  <li><b>Charge</b> : à la balance, en phase liquide pour les zéotropes ; EPI anti-froid.</li>
+  <li><b>Récupération</b> : groupe adapté, bouteille non pleine, traçabilité.</li></ul>`},
+{m:5,type:"cours",h:"5.5 — En cas de fuite ou d'incident",html:`
+  <ul><li><b>Fuite importante</b> : couper les sources d'ignition, ventiler, évacuer si nécessaire.</li>
+  <li><b>Projection / gelure</b> : rincer abondamment à l'eau tiède, ne pas frotter, consulter.</li>
+  <li><b>Contact ammoniac</b> : rincer 15 min, alerter les secours.</li>
+  <li>Connaître l'emplacement des EPI, extincteur, rince-œil et issues.</li></ul>
+  <div class="warn">⚠️ Toujours signaler et consigner un incident. La sécurité prime sur la production.</div>`},
+{m:5,type:"qcm",q:"Avec quel gaz met-on un circuit sous pression d'essai ?",c:["Oxygène","Air comprimé","Azote","Le fluide"],a:2,e:"L'azote (inerte) via un manodétendeur. Jamais d'oxygène (explosion avec les huiles)."},
+{m:5,type:"qcm",q:"Le R290 (propane) est de classe :",c:["A1","A2L","A3","B2L"],a:2,e:"A3 — très inflammable. Précautions renforcées (zone ventilée, anti-étincelle)."},
+{m:5,type:"exo",h:"Exercice — Préparer une intervention sûre",html:`<p>Tu interviens sur une PAC au R32 (A2L) dans un local fermé. Cite 3 précautions de sécurité.</p>`,sol:`<b>Correction (exemples) :</b> ventiler le local · supprimer les sources d'ignition · respecter la charge limite selon la surface · EPI (gants, lunettes) · utiliser un détecteur adapté A2L.`},
+
+/* FIN */
+{m:5,type:"title",em:"🎓",big:"Dispositif complet — 5 modules",sub:"Technologie · Thermodynamique · Environnement · Réglementation · Sécurité — prêt pour la formation à l'habilitation fluide.",chips:["≈ 12 h de théorie","+ pratique sur plateau","QCM & exercices","Évaluation : fgas-eval-mfer"]}
+];
+
+/* ============ MOTEUR DIAPORAMA ============ */
+let idx=0;
+const stage=document.getElementById('stage');
+const MODS={0:"Introduction",1:"Module 1 · Technologie",2:"Module 2 · Thermodynamique & mesures",3:"Module 3 · Environnement",4:"Module 4 · Réglementation",5:"Module 5 · Sécurité & manipulation"};
+function render(){
+  const s=SLIDES[idx];let html='';
+  if(s.type==='title'){
+    html=`<div class="slide title-slide"><div class="em">${s.em}</div><div class="big">${s.big}</div><p class="lead">${s.sub}</p><div class="chips">${(s.chips||[]).map(c=>`<span>${c}</span>`).join('')}</div></div>`;
+  }else if(s.type==='cours'){
+    html=`<div class="slide"><div class="kicker">${MODS[s.m]}</div><h2>${s.h}</h2>${s.html}</div>`;
+  }else if(s.type==='svg'){
+    html=`<div class="slide"><div class="kicker">${MODS[s.m]}</div><h2>${s.h}</h2><div style="text-align:center">${s.svg}</div>${s.html||''}</div>`;
+  }else if(s.type==='qcm'){
+    html=`<div class="slide"><div class="kicker">${MODS[s.m]} · QCM</div><h2>📝 Question</h2><p class="lead">${s.q}</p><div class="choices" id="ch"></div><div class="reveal box ok" id="rv"></div></div>`;
+  }else if(s.type==='exo'){
+    html=`<div class="slide"><div class="kicker">${MODS[s.m]} · Exercice</div><h2>✍️ ${s.h}</h2>${s.html}<button class="btn ghost" onclick="document.getElementById('rv').classList.add('show')">Voir la solution</button><div class="reveal box info" id="rv" style="margin-top:.8rem">${s.sol}</div></div>`;
+  }
+  stage.innerHTML=html;
+  if(s.type==='qcm'){
+    const ch=document.getElementById('ch');
+    s.c.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;
+      b.onclick=()=>{const bs=ch.querySelectorAll('button');bs.forEach((x,j)=>{x.disabled=true;if(j===s.a)x.classList.add('correct');});
+        if(i!==s.a)b.classList.add('wrong');
+        const rv=document.getElementById('rv');rv.innerHTML=`<b>${i===s.a?'✅ Correct':'❌ Incorrect'} —</b> ${s.e}`;rv.classList.add('show');};
+      ch.appendChild(b);});
+  }
+  document.getElementById('count').textContent=`${idx+1} / ${SLIDES.length}`;
+  document.getElementById('modLabel').textContent=MODS[s.m];
+  document.getElementById('bar').style.width=`${((idx+1)/SLIDES.length)*100}%`;
+  document.getElementById('jump').value=idx;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function next(){if(idx<SLIDES.length-1){idx++;render();}}
+function prev(){if(idx>0){idx--;render();}}
+function goSlide(i){idx=i;render();}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();if(e.key==='p'||e.key==='P')window.print();});
+// swipe tactile
+let x0=null;
+stage.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
+stage.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(dx<-50)next();if(dx>50)prev();x0=null;},{passive:true});
+// menu de saut
+const jump=document.getElementById('jump');
+SLIDES.forEach((s,i)=>{const o=document.createElement('option');o.value=i;
+  const lbl=s.type==='title'?(s.big):(s.h||s.q||'Slide');o.textContent=`${i+1}. ${MODS[s.m]} — ${lbl}`.slice(0,70);jump.appendChild(o);});
+render();
+</script>
+</body>
+</html>
