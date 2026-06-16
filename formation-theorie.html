@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A1F33">
+<title>Formation théorique complète — par niveau d'habilitation | inerWeb Édu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0A1F33;--blue:#0E3A5E;--blue2:#114E78;--frost:#35D0C5;--frost2:#7BE0D8;
+    --accent:#FF6B35;--accent2:#FF8E53;--bg:#F4F8FB;--card:#fff;--txt:#13283C;--muted:#5B7185;--border:#e3edf4;
+    --head:'Poppins','Inter',system-ui,sans-serif;--body:'Inter','Calibri',system-ui,sans-serif;}
+  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--txt);background:var(--bg);line-height:1.6;font-size:17px}
+  header.top{position:sticky;top:0;z-index:50;background:linear-gradient(120deg,#0A1F33,#0E3A5E 55%,#1C7C94);color:#fff;padding:.7rem 1rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;box-shadow:0 4px 16px rgba(13,58,94,.12)}
+  header.top .logo{font-family:var(--head);font-weight:700;font-size:1.15rem}
+  header.top .tag{background:var(--accent);font-size:.78rem;font-weight:700;padding:.2rem .6rem;border-radius:20px}
+  header.top a.home{margin-left:auto;color:#cfe0f0;text-decoration:none;border:1px solid #2c4a6e;padding:.35rem .7rem;border-radius:10px;font-size:.85rem}
+  nav.tabs{display:flex;gap:.4rem;overflow-x:auto;padding:.7rem;position:sticky;top:54px;background:var(--bg);z-index:40}
+  nav.tabs button{flex:0 0 auto;background:#fff;border:2px solid var(--border);color:var(--blue);font-weight:700;font-size:.92rem;padding:.55rem .9rem;border-radius:12px;cursor:pointer;white-space:nowrap;font-family:var(--head)}
+  nav.tabs button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 1rem 3rem}
+  .panel{display:none;animation:f .2s}.panel.active{display:block}@keyframes f{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 4px 16px rgba(13,58,94,.05);padding:1.1rem 1.3rem;margin:.9rem 0}
+  h1{font-family:var(--head);font-weight:800;color:var(--ink);font-size:1.7rem;margin:.3rem 0 .5rem}
+  h2{font-family:var(--head);font-weight:700;color:var(--blue);font-size:1.3rem;margin:.2rem 0 .5rem;display:flex;gap:.5rem;align-items:center}
+  h3{font-family:var(--head);font-weight:600;color:var(--blue2);font-size:1.08rem;margin:.8rem 0 .3rem}
+  p{margin:.5rem 0}ul{margin:.4rem 0 .5rem 1.3rem}li{margin:.3rem 0}
+  .lead{color:var(--muted);font-size:1.05rem}
+  table{border-collapse:collapse;width:100%;margin:.7rem 0;font-size:.95rem}
+  th,td{border:1px solid var(--border);padding:.55rem .6rem;text-align:left;vertical-align:top}
+  thead th{background:var(--blue);color:#fff;font-family:var(--head)}tbody tr:nth-child(even){background:#f5f9fc}
+  .info{background:#eaf3fb;border-left:5px solid var(--blue2);border-radius:10px;padding:.7rem 1rem;margin:.6rem 0}
+  .key{background:#fff3e6;border-left:5px solid var(--accent);border-radius:10px;padding:.7rem 1rem;margin:.6rem 0;font-weight:600}
+  .warn{background:#fff6e8;border-left:5px solid #e0a106;border-radius:10px;padding:.7rem 1rem;margin:.6rem 0}
+  .badge{display:inline-block;font-weight:800;font-family:var(--head);color:#fff;border-radius:10px;padding:.15rem .6rem;font-size:.95rem}
+  .bA{background:#0E3A5E}.bB{background:#1C7C94}.bC{background:#7b1fa2}.bD{background:#27ae60}.bE{background:#5B7185}.bV{background:#FF6B35}
+  .lvlgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.8rem}
+  .lvl{background:#fff;border:2px solid var(--border);border-radius:14px;padding:1rem}
+  .lvl .h{display:flex;align-items:center;gap:.5rem;font-family:var(--head);font-weight:700;color:var(--ink);font-size:1.05rem}
+  .lvl .d{font-size:.9rem;color:var(--muted);margin-top:.3rem}
+  details{background:#fff;border:1px solid var(--border);border-radius:12px;margin:.6rem 0;overflow:hidden}
+  summary{cursor:pointer;font-family:var(--head);font-weight:700;color:var(--ink);padding:.85rem 1rem;list-style:none;display:flex;align-items:center;gap:.6rem}
+  summary::-webkit-details-marker{display:none}summary::after{content:"▸";margin-left:auto;color:var(--accent)}
+  details[open] summary::after{content:"▾"}
+  .body{padding:0 1.1rem 1rem}
+  .foot{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 0}
+  .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-family:var(--head);padding:.6rem 1.1rem;border-radius:10px;border:none;cursor:pointer}
+  @media print{header.top,nav.tabs,.btn{display:none!important}.panel{display:block!important}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+  <header class="top">
+    <span class="logo">❄️ inerWeb Édu</span>
+    <span class="tag">Formation théorique — par niveau</span>
+    <a class="home" href="index.html">🏠 Portail</a>
+  </header>
+  <nav class="tabs" id="nav">
+    <button class="active" data-p="intro">🎯 Présentation</button>
+    <button data-p="niveaux">🗂️ Les 7 niveaux</button>
+    <button data-p="tronc">📚 Tronc commun (théorie)</button>
+    <button data-p="fiches">📑 Fiche par niveau</button>
+    <button data-p="parcours">🗓️ Parcours & validités</button>
+  </nav>
+  <div class="wrap">
+
+  <!-- INTRO -->
+  <section class="panel active" id="intro">
+    <div class="card">
+      <h1>Formation théorique complète à l'habilitation fluides</h1>
+      <p class="lead">Le programme théorique de l'attestation d'aptitude, structuré par <b>niveau d'habilitation</b> (régime de l'arrêté du 21 novembre 2025 — F‑Gas III). Un tronc commun de connaissances, puis les spécificités propres à chaque catégorie.</p>
+      <div class="key">Principe : tout titulaire maîtrise le <b>tronc commun</b> (5 domaines) ; chaque catégorie ajoute ses <b>exigences spécifiques</b> (fluide, charge, opérations autorisées, risques).</div>
+      <h3>Comment l'utiliser</h3>
+      <ul>
+        <li><b>Onglet « Les 7 niveaux »</b> : vue d'ensemble et correspondances ancien → nouveau régime.</li>
+        <li><b>Onglet « Tronc commun »</b> : la théorie commune à tous (technologie, thermodynamique, environnement, réglementation, sécurité).</li>
+        <li><b>Onglet « Fiche par niveau »</b> : pour chaque catégorie, le périmètre, les fluides, la théorie clé et la sécurité.</li>
+      </ul>
+      <p style="margin-top:.8rem"><a class="btn" href="cours-formation.html">▶ Ouvrir le cours animé (5 modules)</a></p>
+      <div class="info">Document de préparation théorique. L'évaluation certificative (théorique + pratique) est conduite par l'organisme évaluateur selon le référentiel officiel.</div>
+    </div>
+  </section>
+
+  <!-- NIVEAUX -->
+  <section class="panel" id="niveaux">
+    <div class="card">
+      <h2>🗂️ Les 7 catégories d'aptitude (régime 2025)</h2>
+      <p>Nouveauté majeure : on classe désormais par <b>type de fluide</b> (et non plus seulement par charge).</p>
+      <table>
+        <thead><tr><th>Cat.</th><th>Périmètre</th><th>Fluides</th><th>Ancien équiv.</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge bA">A1</span></td><td>Tous équipements, sans limite de charge</td><td>Fluorés (HFC/HFO) + hydrocarbures</td><td>I</td></tr>
+          <tr><td><span class="badge bA">A2</span></td><td>Charge &lt; 3 kg (&lt; 6 kg si hermétiquement scellé)</td><td>Fluorés + HC, petite charge</td><td>II</td></tr>
+          <tr><td><span class="badge bB">B</span></td><td>Tous équipements au CO₂</td><td>CO₂ (R‑744)</td><td>—</td></tr>
+          <tr><td><span class="badge bC">C</span></td><td>Tous équipements à l'ammoniac</td><td>NH₃ (R‑717)</td><td>—</td></tr>
+          <tr><td><span class="badge bD">D</span></td><td>Récupération seule (fin de vie)</td><td>HFC / HFO, &lt; 3 kg</td><td>III</td></tr>
+          <tr><td><span class="badge bE">E</span></td><td>Contrôle d'étanchéité seul</td><td>Tous fluides fluorés</td><td>IV</td></tr>
+          <tr><td><span class="badge bV">V</span></td><td>Climatisation des véhicules</td><td>Clim auto (R‑134a, R‑1234yf)</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <div class="key">Le <b>BAC PRO MFER</b> prépare à la catégorie <b>A1</b> — le périmètre le plus large du métier.</div>
+      <div class="info"><b>Capacité</b> (entreprise) = 5 ans · <b>Aptitude</b> (personne) = 7 ans. Les deux sont obligatoires et indépendantes.</div>
+    </div>
+  </section>
+
+  <!-- TRONC COMMUN -->
+  <section class="panel" id="tronc">
+    <div class="card">
+      <h2>📚 Tronc commun théorique — les 5 domaines</h2>
+      <p class="lead">Connaissances communes à toutes les catégories. Le cours animé détaille chaque point.</p>
+    </div>
+    <details open><summary>1 · Technologie</summary><div class="body">
+      <ul>
+        <li>Le circuit frigorifique : compresseur → condenseur → détendeur → évaporateur (HP/BP).</li>
+        <li>Rôle et technologies de chaque organe ; organes annexes (déshydrateur, voyant, bouteille, pressostats…).</li>
+        <li>Instruments de mesure : manifold, pompe à vide, balance, détecteur de fuite.</li>
+        <li>Raccordements et étanchéité ; poste azote.</li>
+      </ul>
+    </div></details>
+    <details><summary>2 · Thermodynamique & mesures</summary><div class="body">
+      <ul>
+        <li>Chaleur sensible / latente, changements d'état.</li>
+        <li>Relation pression–température (saturation) ; diagramme enthalpique log(p)‑h.</li>
+        <li>Surchauffe et sous‑refroidissement : définition, mesure, valeurs cibles.</li>
+        <li>COP / EER ; diagnostic par les mesures.</li>
+      </ul>
+    </div></details>
+    <details><summary>3 · Environnement</summary><div class="body">
+      <ul>
+        <li>Couche d'ozone (ODP) vs effet de serre (PRP/GWP).</li>
+        <li>Équivalent tCO₂e = (charge × PRP)/1000 ; seuils de contrôle.</li>
+        <li>Phase‑down F‑Gas III ; fluides de substitution (HFO, naturels).</li>
+      </ul>
+    </div></details>
+    <details><summary>4 · Réglementation</summary><div class="body">
+      <ul>
+        <li>F‑Gas III (UE) 2024/573 ; arrêté du 21 novembre 2025.</li>
+        <li>Capacité (entreprise) vs aptitude (personne) ; les 7 catégories.</li>
+        <li>Contrôles d'étanchéité, registre 5 ans, traçabilité CERFA 15497*04.</li>
+        <li>Dégazage interdit ; récupération / régénération.</li>
+      </ul>
+    </div></details>
+    <details><summary>5 · Sécurité & manipulation</summary><div class="body">
+      <ul>
+        <li>Risques : pression, froid (gelures), asphyxie, inflammabilité, toxicité.</li>
+        <li>Classes NF EN 378 : A1 / A2L / A3 / B2L ; EPI adaptés.</li>
+        <li>Poste azote & DESP ; procédures sûres (brasage, vide, charge, récupération).</li>
+        <li>Conduite en cas de fuite ou d'incident.</li>
+      </ul>
+    </div></details>
+  </section>
+
+  <!-- FICHES PAR NIVEAU -->
+  <section class="panel" id="fiches">
+    <div class="card">
+      <h2>📑 Fiche théorique par niveau</h2>
+      <p class="lead">Pour chaque catégorie : périmètre, fluides, points de théorie spécifiques et sécurité. (Le tronc commun s'applique à toutes.)</p>
+    </div>
+
+    <details open><summary><span class="badge bA">A1</span> Tous équipements — sans limite de charge</summary><div class="body">
+      <h3>Périmètre</h3><p>Installation, mise en service, maintenance, contrôle d'étanchéité, récupération, recharge — tous équipements, toutes charges. Fluides fluorés (HFC/HFO) et hydrocarbures.</p>
+      <h3>Théorie spécifique</h3>
+      <ul><li>Maîtrise complète du cycle, des calculs (surchauffe, SC, tCO₂e) et du diagnostic.</li>
+      <li>Tous les fluides fluorés + HC : classes de sécurité, charges limites des A2L/A3 selon le local.</li>
+      <li>Réglementation complète : contrôles, registre, quotas, interdictions.</li></ul>
+      <h3>Sécurité</h3><p>Manipulation des fluides inflammables (A2L/A3) : ventilation, anti‑étincelle, charges limites. Cible du BAC PRO MFER.</p>
+    </div></details>
+
+    <details><summary><span class="badge bA">A2</span> Petite charge (&lt; 3 kg / &lt; 6 kg si scellé)</summary><div class="body">
+      <h3>Périmètre</h3><p>Toutes opérations, mais limité aux équipements de faible charge (climatiseurs split, petits meubles…).</p>
+      <h3>Théorie spécifique</h3><ul><li>Mêmes bases que A1, appliquées aux petits systèmes.</li><li>Notion de charge limite et d'équipement hermétiquement scellé (seuil 6 kg).</li></ul>
+      <h3>Sécurité</h3><p>Idem A1 à l'échelle des petites charges ; vigilance A2L (R‑32) sur les splits.</p>
+    </div></details>
+
+    <details><summary><span class="badge bB">B</span> CO₂ (R‑744)</summary><div class="body">
+      <h3>Périmètre</h3><p>Équipements fonctionnant au CO₂ (froid commercial transcritique, etc.).</p>
+      <h3>Théorie spécifique</h3><ul><li>Cycle <b>transcritique</b> ; pressions de service très élevées.</li><li>Particularités du R‑744 (point critique bas, gestion de la HP).</li></ul>
+      <h3>Sécurité</h3><div class="warn">Risque <b>mécanique majeur</b> : pressions jusqu'à ~120 bar → outillage et raccords spécifiques, risque d'éclatement. Asphyxie en local confiné.</div>
+    </div></details>
+
+    <details><summary><span class="badge bC">C</span> Ammoniac (R‑717)</summary><div class="body">
+      <h3>Périmètre</h3><p>Installations industrielles à l'ammoniac.</p>
+      <h3>Théorie spécifique</h3><ul><li>Propriétés du NH₃ (excellent frigorigène, PRP nul) et ses contraintes.</li><li>Matériaux compatibles (pas de cuivre), détection NH₃.</li></ul>
+      <h3>Sécurité</h3><div class="warn">NH₃ = <b>B2L</b> (toxique + faiblement inflammable). EPI lourds : ARI (appareil respiratoire isolant), combinaison ; rinçage à l'eau, ne jamais confiner.</div>
+    </div></details>
+
+    <details><summary><span class="badge bD">D</span> Récupération seule</summary><div class="body">
+      <h3>Périmètre</h3><p>Récupération du fluide en fin de vie de l'équipement (HFC/HFO, &lt; 3 kg). Ex. centres VHU, déchetterie pro.</p>
+      <h3>Théorie spécifique</h3><ul><li>Procédure de récupération, bouteilles adaptées, taux de remplissage.</li><li>Traçabilité et destination du fluide (recyclage / régénération / destruction).</li></ul>
+      <h3>Sécurité</h3><p>Dégazage interdit ; manipulation des bouteilles sous pression.</p>
+    </div></details>
+
+    <details><summary><span class="badge bE">E</span> Contrôle d'étanchéité seul</summary><div class="body">
+      <h3>Périmètre</h3><p>Contrôle d'étanchéité uniquement, sans ouverture du circuit ni manipulation de fluide.</p>
+      <h3>Théorie spécifique</h3><ul><li>Méthodes directes (détecteur, eau savonneuse, traceur UV) et indirectes.</li><li>Seuils et fréquences de contrôle selon la charge en tCO₂e.</li></ul>
+      <h3>Sécurité</h3><p>Lecture des manomètres, identification des points de fuite à risque.</p>
+    </div></details>
+
+    <details><summary><span class="badge bV">V</span> Véhicules (climatisation auto)</summary><div class="body">
+      <h3>Périmètre</h3><p>Climatisation des véhicules (entretien, recharge).</p>
+      <h3>Théorie spécifique</h3><ul><li>Fluides auto : R‑134a (ancien), <b>R‑1234yf</b> (HFO, A2L, imposé).</li><li>Stations de charge automobiles, spécificités du circuit clim auto.</li></ul>
+      <h3>Sécurité</h3><p>R‑1234yf faiblement inflammable (A2L) : précautions atelier.</p>
+    </div></details>
+  </section>
+
+  <!-- PARCOURS -->
+  <section class="panel" id="parcours">
+    <div class="card">
+      <h2>🗓️ Parcours, validités & calendrier</h2>
+      <table>
+        <thead><tr><th>Élément</th><th>Règle</th></tr></thead>
+        <tbody>
+          <tr><td>Attestation d'aptitude (personne)</td><td>Valable <b>7 ans</b> ; remise à niveau avant échéance (sinon examen complet)</td></tr>
+          <tr><td>Attestation de capacité (entreprise)</td><td>Valable <b>5 ans</b></td></tr>
+          <tr><td>Nouveau régime seul applicable</td><td><b>1ᵉʳ janvier 2027</b></td></tr>
+          <tr><td>Mise à niveau des anciens titulaires (I→IV)</td><td>Avant le <b>12 mars 2029</b></td></tr>
+        </tbody>
+      </table>
+      <h3>Correspondances ancien → nouveau régime</h3>
+      <table>
+        <thead><tr><th>Ancien</th><th>Nouveau</th></tr></thead>
+        <tbody>
+          <tr><td>Cat. I</td><td>A1</td></tr>
+          <tr><td>Cat. II</td><td>A2</td></tr>
+          <tr><td>Cat. III</td><td>D</td></tr>
+          <tr><td>Cat. IV</td><td>E</td></tr>
+        </tbody>
+      </table>
+      <div class="key">Évaluation finale : sur le système <b>fgas‑eval‑mfer</b> (examen blanc + examen). S'entraîner d'abord dans la préparation et le cours animé.</div>
+      <p style="margin-top:.6rem"><button class="btn" onclick="window.print()">🖨️ Imprimer ce dossier (PDF)</button></p>
+    </div>
+    <div class="foot">inerWeb Édu — Formation théorique par niveau d'habilitation · Conforme F‑Gas III (UE 2024/573) & arrêté du 21 novembre 2025 · F. Henninot</div>
+  </section>
+
+  </div>
+<script>
+  const nav=document.getElementById('nav');
+  nav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    nav.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById(b.dataset.p).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});});
+</script>
+</body>
+</html>
